@@ -1134,6 +1134,88 @@ body {
     background: #b71c1c;
     border-color: #b71c1c;
 }
+        /* =========================
+   SMALL BLACK MOBILE MENU
+========================== */
+
+@media (max-width: 900px) {
+
+    #mainNav {
+        display: none;
+    }
+
+    #mainNav.open {
+        display: flex;
+
+        position: absolute;
+
+        top: 68px;
+        right: 15px;
+
+        width: 170px;
+
+        flex-direction: column;
+
+        gap: 0;
+
+        padding: 8px 0;
+
+        background: #000;
+
+        border-radius: 8px;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+
+        z-index: 9999;
+    }
+
+    #mainNav.open a {
+        display: block;
+
+        width: 100%;
+
+        padding: 9px 14px;
+
+        background: transparent;
+
+        border: none;
+
+        color: white;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        text-align: left;
+
+        text-decoration: none;
+    }
+
+    #mainNav.open a:hover {
+        color: var(--yellow);
+    }
+
+    #mainNav.open .cart-btn {
+        width: 100%;
+
+        padding: 9px 14px;
+
+        background: transparent;
+
+        border: none;
+
+        color: white;
+
+        font-size: 12px;
+
+        text-align: left;
+    }
+
+    #mainNav.open .cart-btn:hover {
+        color: var(--yellow);
+    }
+
+}
 
 /* =========================
    MOBILE CART
@@ -2127,6 +2209,7 @@ renderReviews();
     }
 
 }
+    
 
     </style>
 </head>
