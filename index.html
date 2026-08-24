@@ -77,6 +77,16 @@
             margin: auto;
         }
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
 
         /* =========================
            HEADER
@@ -97,6 +107,7 @@
             justify-content: space-between;
             gap: 20px;
         }
+        
         
    /* =========================
    BRAND / LOGO
@@ -1323,6 +1334,21 @@
 
     .footer-grid > div:first-child {
         grid-column: 1 / -1;
+    }
+
+}
+        @media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    footer {
+        margin-bottom: 0;
+    }
+
+    footer::after {
+        content: none;
     }
 
 }
