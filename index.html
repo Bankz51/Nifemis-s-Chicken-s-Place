@@ -3043,6 +3043,12 @@
         document
             .getElementById("mainNav")
             .classList.toggle("open");
+        // Close mobile menu when a navigation link is clicked
+document.querySelectorAll("#mainNav a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("mainNav").classList.remove("open");
+    });
+});
 
     }
 
