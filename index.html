@@ -957,55 +957,62 @@
             }
         }
 
+@media (max-width: 600px) {
 
-        @media (max-width: 600px) {
+    .nav {
+        min-height: 68px;
+    }
 
-            .nav {
-                min-height: 68px;
-            }
+    .logo {
+        font-size: 12px;
+    }
 
-            .logo {
-                font-size: 12px;
-            }
+    .logo-mark {
+        width: 40px;
+        height: 40px;
+    }
 
-            .logo-mark {
-                width: 40px;
-                height: 40px;
-            }
+    .hero {
+        min-height: 570px;
+    }
 
-            .hero {
-                min-height: 570px;
-            }
+    .hero p {
+        font-size: 13px;
+    }
 
-            .hero p {
-                font-size: 13px;
-            }
+    section {
+        padding: 62px 0;
+    }
 
-            section {
-                padding: 62px 0;
-            }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
+    .product-image {
+        height: 280px;
+    }
 
-            .product-image {
-                height: 280px;
-            }
+    .features {
+        grid-template-columns: 1fr;
+    }
 
-            .features {
-                grid-template-columns: 1fr;
-            }
+    .review-card {
+        width: 285px;
+    }
 
-            .review-card {
-                width: 285px;
-            }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+    /* MOBILE FOOTER */
 
-        }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 20px;
+    }
+
+    .footer-grid > div:first-child {
+        grid-column: 1 / -1;
+    }
+
+}
 
     </style>
 </head>
