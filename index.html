@@ -2950,705 +2950,772 @@ body {
 
 </div>
 
-
-
-<!-- =========================
-     JAVASCRIPT
-========================== -->
-
 <script>
 
-    /* =========================
-       WHATSAPP NUMBER
-    ========================== */
+/* =========================
+   WHATSAPP NUMBER
+========================== */
 
-    const whatsappNumber = "2347073527944";
-
-
-    /* =========================
-       CART
-    ========================== */
-
-    let cart =
-        JSON.parse(
-            localStorage.getItem("nifemiCart")
-        ) || [];
+const whatsappNumber = "2347073527944";
 
 
-    function formatMoney(amount) {
+/* =========================
+   CART
+========================== */
 
-        return "₦" +
-            amount.toLocaleString("en-NG");
+let cart =
+    JSON.parse(
+        localStorage.getItem("nifemiCart")
+    ) || [];
 
-    }
+
+function formatMoney(amount) {
+
+    return "₦" + amount.toLocaleString("en-NG");
+
+}
 
 
-    function saveCart() {
+function saveCart() {
 
-        localStorage.setItem(
-            "nifemiCart",
-            JSON.stringify(cart)
+    localStorage.setItem(
+        "nifemiCart",
+        JSON.stringify(cart)
+    );
+
+    renderCart();
+
+}
+
+
+/* =========================
+   ADD TO CART
+========================== */
+
+function addToCart(name, price, unit, image) {
+
+    const existing =
+        cart.find(
+            item =>
+                item.name === name &&
+                item.price === price
         );
 
-        renderCart();
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+
+            name: name,
+            price: price,
+            unit: unit,
+            image: image,
+            quantity: 1
+
+        });
 
     }
 
 
-    function addToCart(
-        name,
-        price,
-        unit,
-        image
-    ) {
+    saveCart();
 
-        const existing =
-            cart.find(
-                item =>
-                    item.name === name &&
-                    item.price === price
-            );
+    showToast(name + " added to cart");
+
+}
 
 
-        if (existing) {
+/* =========================
+   QUANTITY
+========================== */
 
-            existing.quantity++;
+function changeQuantity(index, change) {
 
-        } else {
-
-            cart.push({
-
-                name: name,
-                price: price,
-                unit: unit,
-                image: image,
-                quantity: 1
-
-            });
-
-        }
+    cart[index].quantity += change;
 
 
-        saveCart();
-
-
-        showToast(
-            name + " added to cart"
-        );
-
-    }
-
-
-
-    function changeQuantity(
-        index,
-        change
-    ) {
-
-        cart[index].quantity += change;
-
-
-        if (
-            cart[index].quantity <= 0
-        ) {
-
-            cart.splice(index, 1);
-
-        }
-
-
-        saveCart();
-
-    }
-
-
-
-    function removeItem(index) {
+    if (cart[index].quantity <= 0) {
 
         cart.splice(index, 1);
 
-        saveCart();
+    }
+
+
+    saveCart();
+
+}
+
+
+/* =========================
+   REMOVE ITEM
+========================== */
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+}
+
+
+/* =========================
+   CLEAR CART
+========================== */
+
+function clearCart() {
+
+    cart = [];
+
+    saveCart();
+
+    showToast("Cart cleared");
+
+}
+
+
+/* =========================
+   RENDER CART
+========================== */
+
+function renderCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartCount =
+        cart.reduce(
+            (total, item) =>
+                total + item.quantity,
+            0
+        );
+
+
+    const desktopCount =
+        document.getElementById("cartCount");
+
+    const mobileCount =
+        document.getElementById("mobileCartCount");
+
+
+    if (desktopCount) {
+
+        desktopCount.textContent =
+            cartCount;
 
     }
 
 
+    if (mobileCount) {
 
-    function clearCart() {
-
-        cart = [];
-
-        saveCart();
+        mobileCount.textContent =
+            cartCount;
 
     }
 
 
-
-    /* =========================
-       RENDER CART
-    ========================== */
-
-    function renderCart() {
-
-        const cartItems =
-            document.getElementById(
-                "cartItems"
-            );
-
-        const cartCount =
-            cart.reduce(
-                (total, item) =>
-                    total + item.quantity,
-                0
-            );
+    if (!cartItems) return;
 
 
-        document.getElementById(
-            "cartCount"
-        ).textContent = cartCount;
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+
+            <div class="empty-cart">
+
+                Your cart is empty.
+
+                <br><br>
+
+                Add some frozen foods
+                to get started.
+
+            </div>
+
+        `;
 
 
-        document.getElementById(
-            "mobileCartCount"
-        ).textContent = cartCount;
+        const totalElement =
+            document.getElementById("cartTotal");
 
 
-        if (cart.length === 0) {
+        if (totalElement) {
 
-            cartItems.innerHTML = `
-
-                <div class="empty-cart">
-
-                    Your cart is empty.
-
-                    <br><br>
-
-                    Add some frozen foods
-                    to get started.
-
-                </div>
-
-            `;
-
-            document.getElementById(
-                "cartTotal"
-            ).textContent = "₦0";
-
-            return;
+            totalElement.textContent = "₦0";
 
         }
 
 
-        let total = 0;
-
-
-        cartItems.innerHTML =
-            cart.map(
-                (item, index) => {
-
-                    const itemTotal =
-                        item.price *
-                        item.quantity;
-
-                    total += itemTotal;
-
-
-                    return `
-
-                        <div class="cart-item">
-
-                            <div class="cart-item-image">
-
-                                <img
-                                    src="${item.image}"
-                                    alt="${item.name}">
-
-                            </div>
-
-
-                            <div class="cart-item-details">
-
-                                <h4>
-                                    ${item.name}
-                                </h4>
-
-                                <p>
-                                    ${formatMoney(item.price)}
-                                    / ${item.unit}
-                                </p>
-
-
-                                <div class="quantity">
-
-                                    <button
-                                        onclick="changeQuantity(${index}, -1)">
-
-                                        −
-
-                                    </button>
-
-
-                                    <span>
-                                        ${item.quantity}
-                                    </span>
-
-
-                                    <button
-                                        onclick="changeQuantity(${index}, 1)">
-
-                                        +
-
-                                    </button>
-
-
-                                    <button
-                                        class="remove-item"
-                                        onclick="removeItem(${index})">
-
-                                        Remove
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    `;
-
-                }
-            ).join("");
-
-
-        document.getElementById(
-            "cartTotal"
-        ).textContent =
-            formatMoney(total);
+        return;
 
     }
 
 
-
-    /* =========================
-       OPEN / CLOSE CART
-    ========================== */
-
-    function openCart() {
-
-        document
-            .getElementById("cartOverlay")
-            .classList.add("open");
-
-        renderCart();
-
-    }
+    let total = 0;
 
 
-    function closeCart() {
-
-        document
-            .getElementById("cartOverlay")
-            .classList.remove("open");
-
-    }
-
-
-    function closeCartOutside(event) {
-
-        if (
-            event.target.id ===
-            "cartOverlay"
-        ) {
-
-            closeCart();
-
-        }
-
-    }
-
-
-
-    /* =========================
-       WHATSAPP CHECKOUT
-    ========================== */
-
-    function checkoutWhatsApp() {
-
-        if (cart.length === 0) {
-
-            showToast(
-                "Your cart is empty"
-            );
-
-            return;
-
-        }
-
-
-        let total = 0;
-
-
-        const orderItems =
-            cart.map(item => {
+    cartItems.innerHTML =
+        cart.map(
+            (item, index) => {
 
                 const itemTotal =
                     item.price *
                     item.quantity;
 
+
                 total += itemTotal;
 
 
-                return (
+                return `
 
-                    item.name +
-                    " — " +
-                    item.quantity +
-                    " " +
-                    item.unit +
-                    " — " +
-                    formatMoney(itemTotal)
+                    <div class="cart-item">
 
-                );
+                        <div class="cart-item-image">
 
-            }).join("\n");
+                            <img
+                                src="${item.image}"
+                                alt="${item.name}">
 
+                        </div>
 
-        const message =
 
-            "Hello Nifemi’s Chicken’s Place, I’d like to place an order." +
-            "\n\n" +
+                        <div class="cart-item-details">
 
-            "My order:" +
-            "\n" +
+                            <h4>
+                                ${item.name}
+                            </h4>
 
-            orderItems +
+                            <p>
+                                ${formatMoney(item.price)}
+                                / ${item.unit}
+                            </p>
 
-            "\n\n" +
 
-            "Total: " +
-            formatMoney(total) +
+                            <div class="quantity">
 
-            "\n\n" +
+                                <button
+                                    onclick="changeQuantity(${index}, -1)">
+                                    −
+                                </button>
 
-            "Thank you.";
 
+                                <span>
+                                    ${item.quantity}
+                                </span>
 
-        const whatsappURL =
 
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            encodeURIComponent(message);
+                                <button
+                                    onclick="changeQuantity(${index}, 1)">
+                                    +
+                                </button>
 
-        );
 
-    }
+                                <button
+                                    class="remove-item"
+                                    onclick="removeItem(${index})">
 
+                                    Remove
 
+                                </button>
 
-    /* =========================
-       PRODUCT FILTER
-    ========================== */
+                            </div>
 
-    function filterProducts(
-        category,
-        button
-    ) {
+                        </div>
 
-        document
-            .querySelectorAll(".filter-btn")
-            .forEach(btn => {
-
-                btn.classList.remove(
-                    "active"
-                );
-
-            });
-
-
-        button.classList.add(
-            "active"
-        );
-
-
-        document
-            .querySelectorAll(".product-card")
-            .forEach(card => {
-
-                if (
-                    category === "all" ||
-                    card.dataset.category ===
-                    category
-                ) {
-
-                    card.style.display =
-                        "block";
-
-                } else {
-
-                    card.style.display =
-                        "none";
-
-                }
-
-            });
-
-    }
-
-
-
-    /* =========================
-       MOBILE MENU
-    ========================== */
-
-    function toggleMenu() {
-
-        document
-            .getElementById("mainNav")
-            .classList.toggle("open");
-        // Close mobile menu when a navigation link is clicked
-document.querySelectorAll("#mainNav a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("mainNav").classList.remove("open");
-    });
-});
-
-    }
-
-
-
-    /* =========================
-       TOAST
-    ========================== */
-
-    function showToast(message) {
-
-        const toast =
-            document.getElementById(
-                "toast"
-            );
-
-
-        toast.textContent =
-            message;
-
-
-        toast.classList.add(
-            "show"
-        );
-
-
-        setTimeout(() => {
-
-            toast.classList.remove(
-                "show"
-            );
-
-        }, 1800);
-
-    }
-
-
-
-    /* =========================
-       REVIEWS
-    ========================== */
-
-    const defaultReviews = [
-
-        {
-            name:
-                "Nifemi’s Chicken’s Place",
-
-            text:
-                "Your review will appear here once customers start sharing their experience."
-
-        }
-
-    ];
-
-
-    let reviews =
-        JSON.parse(
-            localStorage.getItem(
-                "nifemiReviews"
-            )
-        ) || defaultReviews;
-
-
-
-    function escapeHTML(text) {
-
-        return String(text)
-            .replace(
-                /[&<>"']/g,
-                character => ({
-
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
-
-                }[character])
-            );
-
-    }
-
-
-
-    function renderReviews() {
-
-        const track =
-            document.getElementById(
-                "reviewTrack"
-            );
-
-
-        const cards =
-            reviews.map(review => `
-
-                <div class="review-card">
-
-                    <div class="stars">
-                        ★★★★★
                     </div>
 
-                    <p>
-                        ${escapeHTML(
-                            review.text
-                        )}
-                    </p>
+                `;
 
-                    <b>
-                        ${escapeHTML(
-                            review.name
-                        )}
-                    </b>
-
-                </div>
-
-            `).join("");
+            }
+        ).join("");
 
 
-        /*
-            Duplicate the reviews so the
-            carousel can loop continuously.
-        */
+    const totalElement =
+        document.getElementById("cartTotal");
 
-        track.innerHTML =
-            cards + cards;
+
+    if (totalElement) {
+
+        totalElement.textContent =
+            formatMoney(total);
+
+    }
+
+}
+
+
+/* =========================
+   OPEN CART
+========================== */
+
+function openCart() {
+
+    const cartOverlay =
+        document.getElementById("cartOverlay");
+
+
+    if (!cartOverlay) return;
+
+
+    cartOverlay.classList.add("open");
+
+    renderCart();
+
+}
+
+
+/* =========================
+   CLOSE CART
+========================== */
+
+function closeCart() {
+
+    const cartOverlay =
+        document.getElementById("cartOverlay");
+
+
+    if (!cartOverlay) return;
+
+
+    cartOverlay.classList.remove("open");
+
+}
+
+
+/* =========================
+   CLOSE CART OUTSIDE
+========================== */
+
+function closeCartOutside(event) {
+
+    if (
+        event.target.id ===
+        "cartOverlay"
+    ) {
+
+        closeCart();
+
+    }
+
+}
+
+
+/* =========================
+   WHATSAPP CHECKOUT
+========================== */
+
+function checkoutWhatsApp() {
+
+    if (cart.length === 0) {
+
+        showToast("Your cart is empty");
+
+        return;
 
     }
 
 
+    let total = 0;
 
-    /* =========================
-       REVIEW FORM
-    ========================== */
+
+    const orderItems =
+        cart.map(item => {
+
+            const itemTotal =
+                item.price *
+                item.quantity;
+
+
+            total += itemTotal;
+
+
+            return (
+
+                item.name +
+                " — " +
+                item.quantity +
+                " " +
+                item.unit +
+                " — " +
+                formatMoney(itemTotal)
+
+            );
+
+        }).join("\n");
+
+
+    const message =
+
+        "Hello Nifemi’s Chicken’s Place, I’d like to place an order." +
+        "\n\n" +
+
+        "My order:" +
+        "\n" +
+
+        orderItems +
+
+        "\n\n" +
+
+        "Total: " +
+        formatMoney(total) +
+
+        "\n\n" +
+
+        "Thank you.";
+
+
+    const whatsappURL =
+
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+    /* OPEN WHATSAPP */
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+/* =========================
+   PRODUCT FILTER
+========================== */
+
+function filterProducts(category, button) {
 
     document
-        .getElementById("reviewForm")
-        .addEventListener(
-            "submit",
-            function(event) {
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
 
-                event.preventDefault();
+            btn.classList.remove("active");
 
-
-                const name =
-                    document
-                        .getElementById(
-                            "reviewName"
-                        )
-                        .value
-                        .trim();
+        });
 
 
-                const text =
-                    document
-                        .getElementById(
-                            "reviewText"
-                        )
-                        .value
-                        .trim();
+    if (button) {
+
+        button.classList.add("active");
+
+    }
 
 
-                if (
-                    !name ||
-                    !text
-                ) {
+    document
+        .querySelectorAll(".product-card")
+        .forEach(card => {
 
-                    return;
+            if (
+                category === "all" ||
+                card.dataset.category === category
+            ) {
 
-                }
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+}
 
 
-                /*
-                    Remove placeholder review
-                    when first real review is added.
-                */
+/* =========================
+   MOBILE MENU
+========================== */
 
-                reviews =
-                    reviews.filter(
-                        review =>
-                            !(
-                                review.name ===
-                                "Nifemi’s Chicken’s Place" &&
-                                review.text ===
-                                "Your review will appear here once customers start sharing their experience."
-                            )
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("mainNav");
+
+
+    if (!menu) return;
+
+
+    menu.classList.toggle("open");
+
+}
+
+
+/* =========================
+   CLOSE MOBILE MENU
+   AFTER CLICKING LINK
+========================== */
+
+document
+    .querySelectorAll("#mainNav a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                const menu =
+                    document.getElementById(
+                        "mainNav"
                     );
 
 
-                reviews.unshift({
+                if (menu) {
 
-                    name: name,
+                    menu.classList.remove(
+                        "open"
+                    );
 
-                    text: text
-
-                });
-
-
-                localStorage.setItem(
-                    "nifemiReviews",
-                    JSON.stringify(
-                        reviews
-                    )
-                );
-
-
-                renderReviews();
-
-
-                event.target.reset();
-
-
-                showToast(
-                    "Thank you for your review!"
-                );
+                }
 
             }
         );
 
+    });
 
 
-    /* =========================
-       PAUSE REVIEW CAROUSEL
-       ON TOUCH / HOLD
-    ========================== */
+/* =========================
+   TOAST
+========================== */
 
-    const reviewWrapper =
-        document.getElementById(
-            "reviewWrapper"
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+
+    if (!toast) return;
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 1800);
+
+}
+
+
+/* =========================
+   REVIEWS
+========================== */
+
+const defaultReviews = [
+
+    {
+
+        name:
+            "Nifemi’s Chicken’s Place",
+
+        text:
+            "Your review will appear here once customers start sharing their experience."
+
+    }
+
+];
+
+
+let reviews =
+    JSON.parse(
+        localStorage.getItem(
+            "nifemiReviews"
+        )
+    ) || defaultReviews;
+
+
+/* =========================
+   ESCAPE HTML
+========================== */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(
+            /[&<>"']/g,
+            character => ({
+
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+
+            }[character])
         );
 
+}
 
-    const reviewTrack =
+
+/* =========================
+   RENDER REVIEWS
+========================== */
+
+function renderReviews() {
+
+    const track =
         document.getElementById(
             "reviewTrack"
         );
 
+
+    if (!track) return;
+
+
+    const cards =
+        reviews.map(review => `
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    ${escapeHTML(
+                        review.text
+                    )}
+                </p>
+
+                <b>
+                    ${escapeHTML(
+                        review.name
+                    )}
+                </b>
+
+            </div>
+
+        `).join("");
+
+
+    track.innerHTML =
+        cards + cards;
+
+}
+
+
+/* =========================
+   REVIEW FORM
+========================== */
+
+const reviewForm =
+    document.getElementById(
+        "reviewForm"
+    );
+
+
+if (reviewForm) {
+
+    reviewForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById(
+                        "reviewName"
+                    )
+                    .value
+                    .trim();
+
+
+            const text =
+                document
+                    .getElementById(
+                        "reviewText"
+                    )
+                    .value
+                    .trim();
+
+
+            if (!name || !text) {
+
+                return;
+
+            }
+
+
+            reviews =
+                reviews.filter(
+                    review =>
+                        !(
+                            review.name ===
+                            "Nifemi’s Chicken’s Place" &&
+
+                            review.text ===
+                            "Your review will appear here once customers start sharing their experience."
+                        )
+                );
+
+
+            reviews.unshift({
+
+                name: name,
+
+                text: text
+
+            });
+
+
+            localStorage.setItem(
+                "nifemiReviews",
+                JSON.stringify(
+                    reviews
+                )
+            );
+
+
+            renderReviews();
+
+
+            event.target.reset();
+
+
+            showToast(
+                "Thank you for your review!"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   REVIEW CAROUSEL
+========================== */
+
+const reviewWrapper =
+    document.getElementById(
+        "reviewWrapper"
+    );
+
+
+const reviewTrack =
+    document.getElementById(
+        "reviewTrack"
+    );
+
+
+if (
+    reviewWrapper &&
+    reviewTrack
+) {
 
     reviewWrapper.addEventListener(
         "mouseenter",
@@ -3699,17 +3766,17 @@ document.querySelectorAll("#mainNav a").forEach(link => {
         { passive: true }
     );
 
+}
 
 
-    /* =========================
-       INITIALIZE
-    ========================== */
+/* =========================
+   INITIALIZE
+========================== */
 
-    renderCart();
+renderCart();
 
-    renderReviews();
+renderReviews();
 
 </script>
-
 </body>
 </html>
