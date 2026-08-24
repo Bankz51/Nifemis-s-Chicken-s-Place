@@ -1204,27 +1204,38 @@
        MOBILE NAVIGATION
     ========================== */
 
+    /* =========================
+   MOBILE MENU
+========================== */
+
+@media (max-width: 900px) {
+
     nav {
         display: none;
 
         position: absolute;
 
         top: 68px;
-        left: 0;
+        right: 15px;
+        left: auto;
 
-        width: 100%;
-
-        background: var(--black);
-
-        padding: 18px 20px 22px;
+        width: 180px;
 
         flex-direction: column;
 
         align-items: stretch;
 
-        gap: 0;
+        gap: 4px;
 
-        border-top: 1px solid #333;
+        background: transparent;
+
+        padding: 0;
+
+        border: none;
+
+        box-shadow: none;
+
+        z-index: 1000;
     }
 
     nav.open {
@@ -1232,35 +1243,58 @@
     }
 
 
-    /* EACH NAV LINK */
+    /* EACH MENU ITEM */
 
     nav a {
+        display: block;
+
         width: 100%;
 
-        padding: 14px 5px;
+        padding: 10px 12px;
 
-        border-bottom: 1px solid #222;
+        background: var(--black);
 
-        font-size: 13px;
+        color: white;
 
-        display: block;
+        border: 1px solid #333;
+
+        border-radius: 6px;
+
+        font-size: 12px;
+
+        text-align: left;
+
+        text-decoration: none;
     }
 
     nav a:hover {
         color: var(--yellow);
+
+        border-color: var(--yellow);
     }
 
 
-    /* CART INSIDE MENU */
+    /* CART */
 
     nav .cart-btn {
         width: 100%;
 
-        margin-top: 14px;
+        padding: 10px 12px;
 
-        padding: 13px;
+        margin-top: 2px;
+
+        background: var(--black);
+
+        border: 1px solid #333;
+
+        border-radius: 6px;
+
+        color: white;
+
+        font-size: 12px;
     }
 
+}
 
     /* HAMBURGER */
 
