@@ -1,1 +1,3330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Nifemi’s Chicken’s Place | Frozen Foods</title>
+
+    <meta name="description"
+          content="Nifemi’s Chicken’s Place offers quality frozen chicken, turkey, fish, gizzard, eggs, seafood and other frozen foods in Abeokuta. Nationwide delivery available.">
+
+    <!-- =========================
+         FAVICON
+    ========================== -->
+    <link rel="icon"
+          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23000000'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='58' fill='%23FFD400' font-family='Arial' font-weight='bold'%3EN%3C/text%3E%3C/svg%3E">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        :root {
+            --black: #050505;
+            --dark-black: #0d0d0d;
+            --yellow: #ffd400;
+            --yellow-dark: #d5ad00;
+            --white: #ffffff;
+            --light: #f7f7f7;
+            --gray: #777777;
+            --border: #e5e5e5;
+            --green: #25D366;
+            --red: #d62828;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: #111;
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.97);
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        .nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+
+        /* =========================
+           LOGO
+        ========================== */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .logo-mark {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--yellow);
+            color: var(--black);
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            font-weight: 800;
+            border: 3px solid var(--white);
+        }
+
+        .logo-text span {
+            display: block;
+            color: var(--yellow);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+        }
+
+        .cart-btn {
+            border: none;
+            cursor: pointer;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-weight: 800;
+        }
+
+        .cart-count {
+            background: var(--black);
+            color: var(--yellow);
+            display: inline-grid;
+            place-items: center;
+            min-width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            font-size: 11px;
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 630px;
+            display: flex;
+            align-items: center;
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.66),
+                    rgba(0,0,0,0.80)
+                ),
+                url("images/fresh-chicken.jpg")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 720px;
+            padding: 80px 0;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 1.02;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero p {
+            max-width: 620px;
+            color: #eeeeee;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            padding: 14px 22px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .btn-yellow {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--black);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           DELIVERY BAR
+        ========================== */
+
+        .delivery-bar {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 14px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================== */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 40px;
+        }
+
+        .mini-title {
+            color: var(--yellow-dark);
+            text-transform: uppercase;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 5vw, 45px);
+            line-height: 1.1;
+            margin: 8px 0 12px;
+        }
+
+        .section-heading p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+
+        /* =========================
+           FILTERS
+        ========================== */
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 25px;
+            padding: 9px 15px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--black);
+            color: var(--yellow);
+            border-color: var(--black);
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================== */
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 260px;
+            background: #eee;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--yellow-dark);
+            font-size: 9px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+            margin: 4px 0;
+        }
+
+        .product-price {
+            font-size: 17px;
+            font-weight: 800;
+            margin: 9px 0 15px;
+        }
+
+        .product-price small {
+            color: var(--gray);
+            font-size: 10px;
+        }
+
+        .add-cart {
+            width: 100%;
+            border: none;
+            background: var(--black);
+            color: var(--yellow);
+            padding: 13px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .add-cart:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            background: var(--black);
+            color: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 430px;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.1;
+            margin: 10px 0 18px;
+        }
+
+        .about p {
+            color: #ccc;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .feature {
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .feature strong {
+            display: block;
+            color: var(--yellow);
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           REVIEWS
+        ========================== */
+
+        .reviews-section {
+            background: var(--light);
+            overflow: hidden;
+        }
+
+        .review-form {
+            max-width: 650px;
+            margin: 0 auto 45px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 24px;
+        }
+
+        .review-form h3 {
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px;
+            outline: none;
+            font-size: 12px;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .review-track-wrapper {
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .review-track {
+            display: flex;
+            gap: 18px;
+            width: max-content;
+            animation: reviewSlide 28s linear infinite;
+        }
+
+        .review-track.paused {
+            animation-play-state: paused;
+        }
+
+        .review-card {
+            width: 320px;
+            flex-shrink: 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+        }
+
+        .stars {
+            color: var(--yellow-dark);
+            margin-bottom: 8px;
+        }
+
+        .review-card p {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 13px;
+        }
+
+        .review-card b {
+            font-size: 11px;
+        }
+
+        @keyframes reviewSlide {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .contact-card {
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 26px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 18px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 17px;
+            font-size: 12px;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--yellow);
+            display: grid;
+            place-items: center;
+        }
+
+        .socials {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .social-btn {
+            background: var(--black);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 25px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .social-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .opening-hours {
+            list-style: none;
+        }
+
+        .opening-hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 12px;
+        }
+
+        .opening-hours strong {
+            color: var(--yellow-dark);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 42px 0 22px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 25px;
+        }
+
+        footer h3 {
+            color: var(--yellow);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .copyright {
+            border-top: 1px solid #222;
+            padding-top: 18px;
+            text-align: center;
+            color: #666;
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           WHATSAPP
+        ========================== */
+
+        .whatsapp-float {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 25px;
+            z-index: 900;
+            border: 3px solid white;
+            box-shadow: 0 7px 20px rgba(0,0,0,0.25);
+        }
+
+
+        /* =========================
+           CART
+        ========================== */
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-panel {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: min(440px,100%);
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: 0.3s;
+        }
+
+        .cart-overlay.open .cart-panel {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            background: var(--black);
+            color: white;
+            padding: 19px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-header button {
+            border: none;
+            background: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--gray);
+            padding-top: 70px;
+            font-size: 13px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+            padding: 13px 0;
+        }
+
+        .cart-item-image {
+            width: 62px;
+            height: 62px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-details h4 {
+            font-size: 11px;
+        }
+
+        .cart-item-details p {
+            font-size: 10px;
+            color: var(--gray);
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 6px;
+        }
+
+        .quantity button {
+            width: 23px;
+            height: 23px;
+            border: none;
+            background: var(--black);
+            color: var(--yellow);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-item {
+            background: none !important;
+            color: var(--red) !important;
+            width: auto !important;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #ddd;
+            padding: 18px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 17px;
+            margin-bottom: 13px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            background: var(--green);
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .clear-cart {
+            width: 100%;
+            border: none;
+            background: none;
+            color: var(--red);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 9px;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           TOAST
+        ========================== */
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 25px;
+            transform: translate(-50%,100px);
+            background: var(--black);
+            color: white;
+            border: 1px solid var(--yellow);
+            padding: 12px 17px;
+            border-radius: 25px;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 3000;
+            transition: 0.3s;
+        }
+
+        .toast.show {
+            transform: translate(-50%,0);
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .products-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                width: 100%;
+                background: var(--black);
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                border-top: 1px solid #222;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .nav {
+                min-height: 68px;
+            }
+
+            .logo {
+                font-size: 12px;
+            }
+
+            .logo-mark {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero {
+                min-height: 570px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            section {
+                padding: 62px 0;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 280px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .review-card {
+                width: 285px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <div class="container nav">
+
+        <!-- LOGO -->
+        <a href="#home" class="logo">
+
+            <div class="logo-mark">
+                N
+            </div>
+
+            <div class="logo-text">
+
+                Nifemi’s Chicken’s Place
+
+                <span>
+                    FROZEN FOODS
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav id="mainNav">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#reviews">
+                Reviews
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+            <button class="cart-btn" onclick="openCart()">
+                🛒 Cart
+                <span class="cart-count" id="cartCount">
+                    0
+                </span>
+            </button>
+
+        </nav>
+
+
+        <div style="display:flex;align-items:center;gap:8px;">
+
+            <button class="cart-btn" onclick="openCart()">
+
+                🛒
+
+                <span class="cart-count" id="mobileCartCount">
+                    0
+                </span>
+
+            </button>
+
+            <button
+                class="menu-btn"
+                onclick="toggleMenu()">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="hero-tag">
+                🚚 NATIONWIDE DELIVERY AVAILABLE
+            </div>
+
+            <h1>
+
+                Quality Frozen Foods,
+
+                <span>
+                    Delivered.
+                </span>
+
+            </h1>
+
+            <p>
+
+                Welcome to Nifemi’s Chicken’s Place —
+                your trusted destination for quality frozen
+                chicken, turkey, fish, seafood, eggs and more.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#products"
+                    class="btn btn-yellow">
+
+                    Shop Frozen Foods
+
+                </a>
+
+                <button
+                    class="btn btn-white"
+                    onclick="openCart()">
+
+                    🛒 View Cart
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<div class="delivery-bar">
+
+    🚚 WE DELIVER FROZEN FOODS NATIONWIDE ACROSS NIGERIA
+
+</div>
+
+
+
+<!-- =========================
+     PRODUCTS
+========================== -->
+
+<section id="products">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="mini-title">
+                Our Catalogue
+            </div>
+
+            <h2>
+                Shop Frozen Foods
+            </h2>
+
+            <p>
+                Select your products, add them to your cart
+                and send your complete order directly to WhatsApp.
+            </p>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button
+                class="filter-btn active"
+                onclick="filterProducts('all',this)">
+
+                All
+
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterProducts('chicken',this)">
+
+                Chicken & Poultry
+
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterProducts('eggs',this)">
+
+                Eggs
+
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterProducts('fish',this)">
+
+                Fish
+
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterProducts('seafood',this)">
+
+                Seafood
+
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterProducts('sausage',this)">
+
+                Sausage
+
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div
+            class="products-grid"
+            id="productsGrid">
+
+
+            <!-- FRESH CHICKEN -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/fresh-chicken.jpg"
+                        alt="Fresh Chicken"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Fresh Chicken
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦6,000
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Fresh Chicken',
+                        6000,
+                        'kg',
+                        'images/fresh-chicken.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CHICKEN OROBO -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/chicken-orobo.jpg"
+                        alt="Chicken Orobo"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Chicken Orobo
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦6,500
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Chicken Orobo',
+                        6500,
+                        'kg',
+                        'images/chicken-orobo.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- TURKEY LAPS -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/turkey-laps.jpg"
+                        alt="Turkey Laps"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Turkey Laps
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦7,000
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Turkey Laps',
+                        7000,
+                        'kg',
+                        'images/turkey-laps.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- TURKEY BLANKET -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/turkey-blanket.jpg"
+                        alt="Turkey Blanket"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Turkey Blanket
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦9,000
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Turkey Blanket',
+                        9000,
+                        'kg',
+                        'images/turkey-blanket.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CHICKEN HEAD & FEET -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/chicken-head-feet.jpg"
+                        alt="Chicken Head and Feet"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Chicken Head & Feet
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦3,000
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Chicken Head & Feet',
+                        3000,
+                        'kg',
+                        'images/chicken-head-feet.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- GIZZARD -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/gizzard.jpg"
+                        alt="Gizzard"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Gizzard
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦5,500
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Gizzard',
+                        5500,
+                        'kg',
+                        'images/gizzard.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CHICKEN WINGS -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/chicken-wings.jpg"
+                        alt="Chicken Wings"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Chicken Wings
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦7,000
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Chicken Wings',
+                        7000,
+                        'kg',
+                        'images/chicken-wings.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CHICKEN NECK -->
+
+            <article
+                class="product-card"
+                data-category="chicken">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/chicken-neck.jpg"
+                        alt="Chicken Neck"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Chicken & Poultry
+                    </div>
+
+                    <h3>
+                        Chicken Neck
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦4,000
+
+                        <small>
+                            / kg
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Chicken Neck',
+                        4000,
+                        'kg',
+                        'images/chicken-neck.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- EGGS -->
+
+            <article
+                class="product-card"
+                data-category="eggs">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/eggs.jpg"
+                        alt="Eggs"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Eggs
+                    </div>
+
+                    <h3>
+                        Eggs
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦5,500
+
+                        <small>
+                            / crate
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Eggs',
+                        5500,
+                        'crate',
+                        'images/eggs.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- SAWA FISH -->
+
+            <article
+                class="product-card"
+                data-category="fish">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/sawa-fish.jpg"
+                        alt="Sawa Fish"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Fish
+                    </div>
+
+                    <h3>
+                        Sawa Fish
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦1,000 – ₦12,000
+
+                        <small>
+                            / piece depending on size
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Sawa Fish',
+                        1000,
+                        'piece (starting price)',
+                        'images/sawa-fish.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- SAUSAGE -->
+
+            <article
+                class="product-card"
+                data-category="sausage">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/sausage.jpg"
+                        alt="Sausage"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Sausage
+                    </div>
+
+                    <h3>
+                        Sausage
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦300
+
+                        <small>
+                            / piece
+                        </small>
+
+                    </div>
+
+                    <p style="font-size:10px;color:#777;margin-bottom:12px;">
+                        Full pack: ₦2,500
+                    </p>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Sausage',
+                        300,
+                        'piece',
+                        'images/sausage.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- SHRIMPS -->
+
+            <article
+                class="product-card"
+                data-category="seafood">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/shrimps.jpg"
+                        alt="Shrimps"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Seafood
+                    </div>
+
+                    <h3>
+                        Shrimps
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦4,800
+
+                        <small>
+                            / 250g
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Shrimps',
+                        4800,
+                        '250g',
+                        'images/shrimps.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- PRAWN -->
+
+            <article
+                class="product-card"
+                data-category="seafood">
+
+                <div class="product-image">
+
+                    <img
+                        src="images/prawn.jpg"
+                        alt="Prawn"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Seafood
+                    </div>
+
+                    <h3>
+                        Prawn
+                    </h3>
+
+                    <div class="product-price">
+
+                        ₦7,000
+
+                        <small>
+                            / 250g
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="add-cart"
+                        onclick="addToCart(
+                        'Prawn',
+                        7000,
+                        '250g',
+                        'images/prawn.jpg'
+                        )">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section
+    class="about"
+    id="about">
+
+    <div class="container about-grid">
+
+        <div class="about-image">
+
+            <img
+                src="images/fresh-chicken.jpg"
+                alt="Nifemi's Chicken's Place Frozen Foods"
+                loading="lazy">
+
+        </div>
+
+
+        <div>
+
+            <div class="mini-title">
+                About Us
+            </div>
+
+            <h2>
+                Quality Frozen Foods You Can Trust.
+            </h2>
+
+            <p>
+                Nifemi’s Chicken’s Place is a frozen food
+                business based in Asero Estate, Abeokuta,
+                Ogun State.
+            </p>
+
+            <p>
+                We provide quality chicken, turkey, fish,
+                gizzard, eggs, seafood, sausage and other
+                frozen food products at competitive prices.
+            </p>
+
+            <p>
+                Whether you are buying for your home,
+                restaurant, event or business, we are ready
+                to serve you.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+                    <strong>✓</strong>
+                    Quality Products
+                </div>
+
+                <div class="feature">
+                    <strong>🚚</strong>
+                    Nationwide Delivery
+                </div>
+
+                <div class="feature">
+                    <strong>₦</strong>
+                    Affordable Prices
+                </div>
+
+                <div class="feature">
+                    <strong>📲</strong>
+                    Easy Ordering
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     REVIEWS
+========================== -->
+
+<section
+    class="reviews-section"
+    id="reviews">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="mini-title">
+                Customer Reviews
+            </div>
+
+            <h2>
+                What Our Customers Say
+            </h2>
+
+            <p>
+                Have you bought from us?
+                Leave a review and tell us about your experience.
+            </p>
+
+        </div>
+
+
+        <!-- REVIEW FORM -->
+
+        <div class="review-form">
+
+            <h3>
+                Leave a Review ⭐
+            </h3>
+
+            <form id="reviewForm">
+
+                <div class="form-group">
+
+                    <input
+                        type="text"
+                        id="reviewName"
+                        placeholder="Your name"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <textarea
+                        id="reviewText"
+                        placeholder="Write your review..."
+                        required></textarea>
+
+                </div>
+
+                <button
+                    class="btn btn-yellow"
+                    type="submit">
+
+                    Submit Review
+
+                </button>
+</form>
+
+        </div>
+
+
+        <!-- REVIEW CAROUSEL -->
+
+        <div
+            class="review-track-wrapper"
+            id="reviewWrapper">
+
+            <div
+                class="review-track"
+                id="reviewTrack">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="mini-title">
+                Contact Us
+            </div>
+
+            <h2>
+                We’re Ready For Your Order
+            </h2>
+
+            <p>
+                Call us, send a WhatsApp message or
+                connect with us on social media.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+            <!-- CONTACT -->
+
+            <div class="contact-card">
+
+                <h3>
+                    Get In Touch
+                </h3>
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Location
+                        </strong>
+
+                        <p>
+                            Asero Estate,
+                            Abeokuta, Ogun State
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        📞
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Phone / WhatsApp
+                        </strong>
+
+                        <p>
+
+                            <a
+                                href="https://wa.me/2347073527944"
+                                target="_blank">
+
+                                07073527944
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        ✉️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Email
+                        </strong>
+
+                        <p>
+
+                            <a
+                                href="mailto:Oluwanifemi226@gmail.com">
+
+                                Oluwanifemi226@gmail.com
+
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOCIAL MEDIA -->
+
+                <div class="socials">
+
+                    <a
+                        class="social-btn"
+                        href="https://www.instagram.com/nifemis_chickens_place/"
+                        target="_blank"
+                        rel="noopener">
+
+                        Instagram
+
+                    </a>
+
+
+                    <a
+                        class="social-btn"
+                        href="https://www.tiktok.com/@nifemis_chickens_place"
+                        target="_blank"
+                        rel="noopener">
+
+                        TikTok
+
+                    </a>
+
+
+                    <a
+                        class="social-btn"
+                        href="https://wa.me/2347073527944"
+                        target="_blank"
+                        rel="noopener">
+
+                        WhatsApp
+
+                    </a>
+
+
+                    <a
+                        class="social-btn"
+                        href="mailto:Oluwanifemi226@gmail.com">
+
+                        Email
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- OPENING HOURS -->
+
+            <div class="contact-card">
+
+                <h3>
+                    Opening Hours
+                </h3>
+
+                <ul class="opening-hours">
+
+                    <li>
+                        <span>Monday</span>
+                        <strong>8AM – 9PM</strong>
+                    </li>
+
+                    <li>
+                        <span>Tuesday</span>
+                        <strong>8AM – 9PM</strong>
+                    </li>
+
+                    <li>
+                        <span>Wednesday</span>
+                        <strong>8AM – 9PM</strong>
+                    </li>
+
+                    <li>
+                        <span>Thursday</span>
+                        <strong>8AM – 9PM</strong>
+                    </li>
+
+                    <li>
+                        <span>Friday</span>
+                        <strong>8AM – 9PM</strong>
+                    </li>
+
+                    <li>
+                        <span>Saturday</span>
+                        <strong>8AM – 9PM</strong>
+                    </li>
+
+                    <li>
+                        <span>Sunday</span>
+                        <strong>4PM – 9PM</strong>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    Nifemi’s Chicken’s Place
+                </h3>
+
+                <p>
+                    Quality frozen foods in Abeokuta
+                    with nationwide delivery available.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <div class="footer-links">
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <a href="#products">
+                        Products
+                    </a>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#reviews">
+                        Reviews
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Connect
+                </h3>
+
+                <div class="footer-links">
+
+                    <a
+                        href="https://wa.me/2347073527944"
+                        target="_blank">
+
+                        WhatsApp
+
+                    </a>
+
+                    <a
+                        href="mailto:Oluwanifemi226@gmail.com">
+
+                        Email
+
+                    </a>
+
+                    <a
+                        href="https://www.instagram.com/nifemis_chickens_place/"
+                        target="_blank">
+
+                        Instagram
+
+                    </a>
+
+                    <a
+                        href="https://www.tiktok.com/@nifemis_chickens_place"
+                        target="_blank">
+
+                        TikTok
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Nifemi’s Chicken’s Place.
+            All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================
+     FLOATING WHATSAPP
+========================== -->
+
+<a
+    class="whatsapp-float"
+    href="https://wa.me/2347073527944"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat with Nifemi's Chicken's Place on WhatsApp">
+
+    💬
+
+</a>
+
+
+
+<!-- =========================
+     CART
+========================== -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCartOutside(event)">
+
+    <div class="cart-panel">
+
+
+        <div class="cart-header">
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+            <button
+                onclick="closeCart()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems">
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="cartTotal">
+                    ₦0
+                </span>
+
+            </div>
+
+
+            <button
+                class="checkout-btn"
+                onclick="checkoutWhatsApp()">
+
+                Order on WhatsApp
+
+            </button>
+
+
+            <button
+                class="clear-cart"
+                onclick="clearCart()">
+
+                Clear Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+    /* =========================
+       WHATSAPP NUMBER
+    ========================== */
+
+    const whatsappNumber = "2347073527944";
+
+
+    /* =========================
+       CART
+    ========================== */
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("nifemiCart")
+        ) || [];
+
+
+    function formatMoney(amount) {
+
+        return "₦" +
+            amount.toLocaleString("en-NG");
+
+    }
+
+
+    function saveCart() {
+
+        localStorage.setItem(
+            "nifemiCart",
+            JSON.stringify(cart)
+        );
+
+        renderCart();
+
+    }
+
+
+    function addToCart(
+        name,
+        price,
+        unit,
+        image
+    ) {
+
+        const existing =
+            cart.find(
+                item =>
+                    item.name === name &&
+                    item.price === price
+            );
+
+
+        if (existing) {
+
+            existing.quantity++;
+
+        } else {
+
+            cart.push({
+
+                name: name,
+                price: price,
+                unit: unit,
+                image: image,
+                quantity: 1
+
+            });
+
+        }
+
+
+        saveCart();
+
+
+        showToast(
+            name + " added to cart"
+        );
+
+    }
+
+
+
+    function changeQuantity(
+        index,
+        change
+    ) {
+
+        cart[index].quantity += change;
+
+
+        if (
+            cart[index].quantity <= 0
+        ) {
+
+            cart.splice(index, 1);
+
+        }
+
+
+        saveCart();
+
+    }
+
+
+
+    function removeItem(index) {
+
+        cart.splice(index, 1);
+
+        saveCart();
+
+    }
+
+
+
+    function clearCart() {
+
+        cart = [];
+
+        saveCart();
+
+    }
+
+
+
+    /* =========================
+       RENDER CART
+    ========================== */
+
+    function renderCart() {
+
+        const cartItems =
+            document.getElementById(
+                "cartItems"
+            );
+
+        const cartCount =
+            cart.reduce(
+                (total, item) =>
+                    total + item.quantity,
+                0
+            );
+
+
+        document.getElementById(
+            "cartCount"
+        ).textContent = cartCount;
+
+
+        document.getElementById(
+            "mobileCartCount"
+        ).textContent = cartCount;
+
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML = `
+
+                <div class="empty-cart">
+
+                    Your cart is empty.
+
+                    <br><br>
+
+                    Add some frozen foods
+                    to get started.
+
+                </div>
+
+            `;
+
+            document.getElementById(
+                "cartTotal"
+            ).textContent = "₦0";
+
+            return;
+
+        }
+
+
+        let total = 0;
+
+
+        cartItems.innerHTML =
+            cart.map(
+                (item, index) => {
+
+                    const itemTotal =
+                        item.price *
+                        item.quantity;
+
+                    total += itemTotal;
+
+
+                    return `
+
+                        <div class="cart-item">
+
+                            <div class="cart-item-image">
+
+                                <img
+                                    src="${item.image}"
+                                    alt="${item.name}">
+
+                            </div>
+
+
+                            <div class="cart-item-details">
+
+                                <h4>
+                                    ${item.name}
+                                </h4>
+
+                                <p>
+                                    ${formatMoney(item.price)}
+                                    / ${item.unit}
+                                </p>
+
+
+                                <div class="quantity">
+
+                                    <button
+                                        onclick="changeQuantity(${index}, -1)">
+
+                                        −
+
+                                    </button>
+
+
+                                    <span>
+                                        ${item.quantity}
+                                    </span>
+
+
+                                    <button
+                                        onclick="changeQuantity(${index}, 1)">
+
+                                        +
+
+                                    </button>
+
+
+                                    <button
+                                        class="remove-item"
+                                        onclick="removeItem(${index})">
+
+                                        Remove
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+
+        document.getElementById(
+            "cartTotal"
+        ).textContent =
+            formatMoney(total);
+
+    }
+
+
+
+    /* =========================
+       OPEN / CLOSE CART
+    ========================== */
+
+    function openCart() {
+
+        document
+            .getElementById("cartOverlay")
+            .classList.add("open");
+
+        renderCart();
+
+    }
+
+
+    function closeCart() {
+
+        document
+            .getElementById("cartOverlay")
+            .classList.remove("open");
+
+    }
+
+
+    function closeCartOutside(event) {
+
+        if (
+            event.target.id ===
+            "cartOverlay"
+        ) {
+
+            closeCart();
+
+        }
+
+    }
+
+
+
+    /* =========================
+       WHATSAPP CHECKOUT
+    ========================== */
+
+    function checkoutWhatsApp() {
+
+        if (cart.length === 0) {
+
+            showToast(
+                "Your cart is empty"
+            );
+
+            return;
+
+        }
+
+
+        let total = 0;
+
+
+        const orderItems =
+            cart.map(item => {
+
+                const itemTotal =
+                    item.price *
+                    item.quantity;
+
+                total += itemTotal;
+
+
+                return (
+
+                    item.name +
+                    " — " +
+                    item.quantity +
+                    " " +
+                    item.unit +
+                    " — " +
+                    formatMoney(itemTotal)
+
+                );
+
+            }).join("\n");
+
+
+        const message =
+
+            "Hello Nifemi’s Chicken’s Place, I’d like to place an order." +
+            "\n\n" +
+
+            "My order:" +
+            "\n" +
+
+            orderItems +
+
+            "\n\n" +
+
+            "Total: " +
+            formatMoney(total) +
+
+            "\n\n" +
+
+            "Thank you.";
+
+
+        const whatsappURL =
+
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    }
+
+
+
+    /* =========================
+       PRODUCT FILTER
+    ========================== */
+
+    function filterProducts(
+        category,
+        button
+    ) {
+
+        document
+            .querySelectorAll(".filter-btn")
+            .forEach(btn => {
+
+                btn.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        button.classList.add(
+            "active"
+        );
+
+
+        document
+            .querySelectorAll(".product-card")
+            .forEach(card => {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category ===
+                    category
+                ) {
+
+                    card.style.display =
+                        "block";
+
+                } else {
+
+                    card.style.display =
+                        "none";
+
+                }
+
+            });
+
+    }
+
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    function toggleMenu() {
+
+        document
+            .getElementById("mainNav")
+            .classList.toggle("open");
+
+    }
+
+
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 1800);
+
+    }
+
+
+
+    /* =========================
+       REVIEWS
+    ========================== */
+
+    const defaultReviews = [
+
+        {
+            name:
+                "Nifemi’s Chicken’s Place",
+
+            text:
+                "Your review will appear here once customers start sharing their experience."
+
+        }
+
+    ];
+
+
+    let reviews =
+        JSON.parse(
+            localStorage.getItem(
+                "nifemiReviews"
+            )
+        ) || defaultReviews;
+
+
+
+    function escapeHTML(text) {
+
+        return String(text)
+            .replace(
+                /[&<>"']/g,
+                character => ({
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+
+                }[character])
+            );
+
+    }
+
+
+
+    function renderReviews() {
+
+        const track =
+            document.getElementById(
+                "reviewTrack"
+            );
+
+
+        const cards =
+            reviews.map(review => `
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        ${escapeHTML(
+                            review.text
+                        )}
+                    </p>
+
+                    <b>
+                        ${escapeHTML(
+                            review.name
+                        )}
+                    </b>
+
+                </div>
+
+            `).join("");
+
+
+        /*
+            Duplicate the reviews so the
+            carousel can loop continuously.
+        */
+
+        track.innerHTML =
+            cards + cards;
+
+    }
+
+
+
+    /* =========================
+       REVIEW FORM
+    ========================== */
+
+    document
+        .getElementById("reviewForm")
+        .addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                        .getElementById(
+                            "reviewName"
+                        )
+                        .value
+                        .trim();
+
+
+                const text =
+                    document
+                        .getElementById(
+                            "reviewText"
+                        )
+                        .value
+                        .trim();
+
+
+                if (
+                    !name ||
+                    !text
+                ) {
+
+                    return;
+
+                }
+
+
+                /*
+                    Remove placeholder review
+                    when first real review is added.
+                */
+
+                reviews =
+                    reviews.filter(
+                        review =>
+                            !(
+                                review.name ===
+                                "Nifemi’s Chicken’s Place" &&
+                                review.text ===
+                                "Your review will appear here once customers start sharing their experience."
+                            )
+                    );
+
+
+                reviews.unshift({
+
+                    name: name,
+
+                    text: text
+
+                });
+
+
+                localStorage.setItem(
+                    "nifemiReviews",
+                    JSON.stringify(
+                        reviews
+                    )
+                );
+
+
+                renderReviews();
+
+
+                event.target.reset();
+
+
+                showToast(
+                    "Thank you for your review!"
+                );
+
+            }
+        );
+
+
+
+    /* =========================
+       PAUSE REVIEW CAROUSEL
+       ON TOUCH / HOLD
+    ========================== */
+
+    const reviewWrapper =
+        document.getElementById(
+            "reviewWrapper"
+        );
+
+
+    const reviewTrack =
+        document.getElementById(
+            "reviewTrack"
+        );
+
+
+    reviewWrapper.addEventListener(
+        "mouseenter",
+        () => {
+
+            reviewTrack.classList.add(
+                "paused"
+            );
+
+        }
+    );
+
+
+    reviewWrapper.addEventListener(
+        "mouseleave",
+        () => {
+
+            reviewTrack.classList.remove(
+                "paused"
+            );
+
+        }
+    );
+
+
+    reviewWrapper.addEventListener(
+        "touchstart",
+        () => {
+
+            reviewTrack.classList.add(
+                "paused"
+            );
+
+        },
+        { passive: true }
+    );
+
+
+    reviewWrapper.addEventListener(
+        "touchend",
+        () => {
+
+            reviewTrack.classList.remove(
+                "paused"
+            );
+
+        },
+        { passive: true }
+    );
+
+
+
+    /* =========================
+       INITIALIZE
+    ========================== */
+
+    renderCart();
+
+    renderReviews();
+
+</script>
+
+</body>
+</html>
