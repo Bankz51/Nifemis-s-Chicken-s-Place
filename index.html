@@ -110,34 +110,44 @@
            LOGO
         ========================== */
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--white);
-            font-weight: 800;
-            font-size: 15px;
-        }
+       /* =========================
+   BRAND / LOGO
+========================== */
 
-        .logo-mark {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: var(--yellow);
-            color: var(--black);
-            display: grid;
-            place-items: center;
-            font-size: 24px;
-            font-weight: 800;
-            border: 3px solid var(--white);
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-        .logo-text span {
-            display: block;
-            color: var(--yellow);
-            font-size: 10px;
-            letter-spacing: 1.5px;
-        }
+    text-decoration: none;
+    color: white;
+}
+
+.brand img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.brand-text strong {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.brand-text span {
+    color: var(--yellow);
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 3px;
+}
 
 
         /* =========================
@@ -1267,19 +1277,14 @@
     <div class="container nav">
 
         <!-- LOGO -->
-        <a href="#home" class="logo">
+        <a href="#home" class="brand">
+    <img src="images/logo.png" alt="Nifemi's Chicken's Place Logo">
 
-            <div class="logo-mark">
-                N
-            </div>
-
-            <div class="logo-text">
-
-                Nifemi’s Chicken’s Place
-
-                <span>
-                    FROZEN FOODS
-                </span>
+    <div class="brand-text">
+        <strong>Nifemi’s Chicken’s Place</strong>
+        <span>Frozen Foods</span>
+    </div>
+</a>
 
             </div>
 
