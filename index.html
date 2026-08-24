@@ -191,27 +191,48 @@ body {
             color: var(--yellow);
         }
 
-        .cart-btn {
-            border: none;
-            cursor: pointer;
-            background: var(--yellow);
-            color: var(--black);
-            padding: 10px 15px;
-            border-radius: 30px;
-            font-weight: 800;
-        }
+       /* =========================
+   CART BUTTON VISIBILITY
+========================== */
 
-        .cart-count {
-            background: var(--black);
-            color: var(--yellow);
-            display: inline-grid;
-            place-items: center;
-            min-width: 21px;
-            height: 21px;
-            border-radius: 50%;
-            font-size: 11px;
-        }
+.cart-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 
+    background: var(--yellow);
+    color: var(--black);
+
+    border: none;
+    border-radius: 7px;
+
+    padding: 10px 14px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.cart-count {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 4px;
+
+    background: var(--black);
+    color: var(--yellow);
+
+    border-radius: 50%;
+
+    font-size: 9px;
+    font-weight: 800;
+}
         .menu-btn {
             display: none;
             border: none;
@@ -1242,12 +1263,12 @@ body {
         z-index: 9999;
     }
 
-    #mainNav.open {
+    Nav.open {
         display: flex;
     }
 
-    #mainNav a,
-    #mainNav .cart-btn {
+    Nav a,
+    Nav .cart-btn {
 
         display: block;
 
@@ -1272,8 +1293,8 @@ body {
         box-sizing: border-box;
     }
 
-    #mainNav a:hover,
-    #mainNav .cart-btn:hover {
+    Nav a:hover,
+    Nav .cart-btn:hover {
         color: var(--yellow);
 
         border-color: var(--yellow);
