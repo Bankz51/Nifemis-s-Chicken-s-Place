@@ -1143,86 +1143,101 @@
            RESPONSIVE
         ========================== */
 
-        @media (max-width: 900px) {
-
-            .products-grid {
-                grid-template-columns: repeat(2,1fr);
-            }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            nav {
-                display: none;
-                position: absolute;
-                top: 76px;
-                left: 0;
-                width: 100%;
-                background: var(--black);
-                padding: 20px;
-                flex-direction: column;
-                align-items: flex-start;
-                border-top: 1px solid #222;
-            }
-
-            nav.open {
-                display: flex;
-            }
-
-            .menu-btn {
-                display: block;
-            }
-        }
-
-@media (max-width: 600px) {
-
-    .nav {
-        min-height: 68px;
-    }
-
-    .logo {
-        font-size: 12px;
-    }
-
-    .logo-mark {
-        width: 40px;
-        height: 40px;
-    }
-
-    .hero {
-        min-height: 570px;
-    }
-
-    .hero p {
-        font-size: 13px;
-    }
-
-    section {
-        padding: 62px 0;
-    }
+       @media (max-width: 900px) {
 
     .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid,
+    .contact-grid {
         grid-template-columns: 1fr;
     }
 
-    .product-image {
-        height: 280px;
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .features {
-        grid-template-columns: 1fr;
+
+    /* =========================
+       MOBILE NAVIGATION
+    ========================== */
+
+    nav {
+        display: none;
+
+        position: absolute;
+
+        top: 68px;
+        left: 0;
+
+        width: 100%;
+
+        background: var(--black);
+
+        padding: 18px 20px 22px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        border-top: 1px solid #333;
     }
 
-    .review-card {
-        width: 285px;
+    nav.open {
+        display: flex;
     }
 
+
+    /* EACH NAV LINK */
+
+    nav a {
+        width: 100%;
+
+        padding: 14px 5px;
+
+        border-bottom: 1px solid #222;
+
+        font-size: 13px;
+
+        display: block;
+    }
+
+    nav a:hover {
+        color: var(--yellow);
+    }
+
+
+    /* CART INSIDE MENU */
+
+    nav .cart-btn {
+        width: 100%;
+
+        margin-top: 14px;
+
+        padding: 13px;
+    }
+
+
+    /* HAMBURGER */
+
+    .menu-btn {
+        display: block;
+
+        border: none;
+
+        background: transparent;
+
+        color: white;
+
+        font-size: 28px;
+
+        cursor: pointer;
+    }
+
+}
 
     /* MOBILE FOOTER */
 
