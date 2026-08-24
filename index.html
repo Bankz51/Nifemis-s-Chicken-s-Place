@@ -110,43 +110,66 @@
            LOGO
         ========================== */
 
-       /* =========================
+   /* =========================
    BRAND / LOGO
 ========================== */
 
 .brand {
     display: flex;
     align-items: center;
+
     gap: 10px;
 
     text-decoration: none;
+
     color: white;
+
+    flex-shrink: 0;
 }
 
 .brand img {
     width: 48px;
     height: 48px;
+
     object-fit: contain;
+
     border-radius: 50%;
+
+    display: block;
 }
 
 .brand-text {
     display: flex;
     flex-direction: column;
+
+    justify-content: center;
+
     line-height: 1.15;
 }
 
 .brand-text strong {
     color: white;
+
     font-size: 14px;
+
     font-weight: 800;
+
+    white-space: nowrap;
 }
 
 .brand-text span {
     color: var(--yellow);
+
     font-size: 10px;
+
     font-weight: 600;
+
     margin-top: 3px;
+}
+        .mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 
@@ -1123,11 +1146,11 @@
     }
 
 }
-        @media (max-width: 600px) {
+       @media (max-width: 900px) {
 
     .brand img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
     }
 
     .brand-text strong {
@@ -1136,6 +1159,10 @@
 
     .brand-text span {
         font-size: 9px;
+    }
+
+    .mobile-controls {
+        margin-left: auto;
     }
 
 }
@@ -1292,15 +1319,23 @@
 
     <div class="container nav">
 
-        <!-- LOGO -->
-        <a href="#home" class="brand">
-    <img src="images/logo.png" alt="Nifemi's Chicken's Place Logo">
+        <!-- LOGO + BUSINESS NAME -->
 
-    <div class="brand-text">
-        <strong>Nifemi’s Chicken’s Place</strong>
-        <span>Frozen Foods</span>
-    </div>
-</a>
+        <a href="#home" class="brand">
+
+            <img
+                src="images/logo.png"
+                alt="Nifemi's Chicken's Place Logo">
+
+            <div class="brand-text">
+
+                <strong>
+                    Nifemi’s Chicken’s Place
+                </strong>
+
+                <span>
+                    Frozen Foods
+                </span>
 
             </div>
 
@@ -1331,27 +1366,45 @@
                 Contact
             </a>
 
-            <button class="cart-btn" onclick="openCart()">
+            <button
+                class="cart-btn"
+                onclick="openCart()">
+
                 🛒 Cart
-                <span class="cart-count" id="cartCount">
+
+                <span
+                    class="cart-count"
+                    id="cartCount">
+
                     0
+
                 </span>
+
             </button>
 
         </nav>
 
 
-        <div style="display:flex;align-items:center;gap:8px;">
+        <!-- MOBILE CART + MENU -->
 
-            <button class="cart-btn" onclick="openCart()">
+        <div class="mobile-controls">
+
+            <button
+                class="cart-btn"
+                onclick="openCart()">
 
                 🛒
 
-                <span class="cart-count" id="mobileCartCount">
+                <span
+                    class="cart-count"
+                    id="mobileCartCount">
+
                     0
+
                 </span>
 
             </button>
+
 
             <button
                 class="menu-btn"
