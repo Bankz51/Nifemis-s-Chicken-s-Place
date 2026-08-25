@@ -960,7 +960,13 @@ body {
     .review-card {
         width: 280px;
     }
+/* FINAL JS CAROUSEL OVERRIDE */
 
+.review-track {
+    animation: none !important;
+    transition: none !important;
+    will-change: transform;
+}
 }
         /* =========================
    RATING SELECTOR
@@ -4499,7 +4505,71 @@ if (nifemiReviewForm) {
 ========================= */
 
 loadSupabaseReviews();
+/* =================================================
+   FINAL MOBILE REVIEW AUTO-SCROLL
+================================================= */
 
+(function () {
+
+    const wrapper =
+        document.getElementById("reviewWrapper");
+
+    const track =
+        document.getElementById("reviewTrack");
+
+    if (!wrapper || !track) return;
+
+
+    let position = 0;
+    let lastTime = performance.now();
+
+
+    function moveReviews(time) {
+
+        const elapsed =
+            time - lastTime;
+
+        lastTime = time;
+
+
+        /* Move continuously */
+        position -= elapsed * 0.025;
+
+
+        /*
+           When half of the duplicated
+           reviews have passed, restart.
+        */
+        const halfWidth =
+            track.scrollWidth / 2;
+
+
+        if (Math.abs(position) >= halfWidth) {
+
+            position = 0;
+
+        }
+
+
+        track.style.transform =
+            `translate3d(${position}px, 0, 0)`;
+
+
+        requestAnimationFrame(
+            moveReviews
+        );
+
+    }
+
+
+    /*
+       Start immediately
+    */
+    requestAnimationFrame(
+        moveReviews
+    );
+
+})();
 </script>
 </body>
 </html>
