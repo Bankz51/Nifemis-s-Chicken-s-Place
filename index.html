@@ -4249,16 +4249,14 @@ if (
 }
 
 
-/* =========================
-   INITIALIZE
-========================== */
+<!-- =========================
+     SUPABASE
+========================== -->
 
-renderCart();
-
-renderReviews();
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
 const SUPABASE_URL =
     "https://ovefnpllavbyjmfckxhw.supabase.co";
 
@@ -4271,6 +4269,16 @@ const supabaseClient =
         SUPABASE_KEY
     );
 
+
+/* =========================
+   INITIALIZE
+========================== */
+
+renderCart();
+
+loadReviews();
+
 </script>
+
 </body>
 </html>
