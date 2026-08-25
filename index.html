@@ -848,8 +848,9 @@ body {
     display: flex;
     gap: 18px;
     width: max-content;
-    animation: reviewSlide 28s linear infinite;
+    animation: reviewSlide 20s linear infinite;
     will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .review-card {
@@ -912,16 +913,15 @@ body {
 
 @keyframes reviewSlide {
 
-    from {
-        transform: translateX(0);
+    0% {
+        transform: translate3d(0, 0, 0);
     }
 
-    to {
-        transform: translateX(-50%);
+    100% {
+        transform: translate3d(-50%, 0, 0);
     }
 
 }
-
 
 /* =========================
    MOBILE
