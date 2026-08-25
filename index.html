@@ -111,6 +111,81 @@ body {
             justify-content: space-between;
             gap: 20px;
         }
+        /* =========================
+   ABOUT IMAGE SLIDER
+========================== */
+
+.about-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.about-slides {
+    display: flex;
+    transition: transform 0.6s ease;
+    touch-action: pan-y;
+}
+
+.about-slides img {
+    min-width: 100%;
+    width: 100%;
+    height: 360px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   ABOUT SLIDER DOTS
+========================== */
+
+.about-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+}
+
+.about-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #bbb;
+
+    transition: 0.3s ease;
+}
+
+.about-dot.active {
+    width: 18px;
+
+    border-radius: 10px;
+
+    background: var(--yellow);
+}
+
+
+/* =========================
+   PHONE
+========================== */
+
+@media (max-width: 600px) {
+
+    .about-slides img {
+        height: 250px;
+
+        border-radius: 12px;
+    }
+
+}
 
         /* =========================
    FOOTER CONNECT
@@ -2531,14 +2606,38 @@ renderReviews();
 
     <div class="container about-grid">
 
-        <div class="about-image">
+      <div class="about-slider">
 
-            <img
-                src="images/fresh-chicken.jpg"
-                alt="Nifemi's Chicken's Place Frozen Foods"
-                loading="lazy">
+    <div class="about-slides">
 
-        </div>
+        <img src="images/about-chicken.jpg"
+             alt="Fresh Chicken">
+
+        <img src="images/about-turkey.jpg"
+             alt="Turkey">
+
+        <img src="images/about-fish.jpg"
+             alt="Frozen Fish">
+
+        <img src="images/about-gizzard.jpg"
+             alt="Chicken Gizzard">
+
+        <img src="images/about-eggs.jpg"
+             alt="Fresh Eggs">
+
+    </div>
+
+    <div class="about-dots">
+
+        <span class="about-dot active"></span>
+        <span class="about-dot"></span>
+        <span class="about-dot"></span>
+        <span class="about-dot"></span>
+        <span class="about-dot"></span>
+
+    </div>
+
+</div>
 
 
         <div>
@@ -3189,6 +3288,81 @@ function saveCart() {
 
 }
 
+    /* =========================
+   ABOUT IMAGE SLIDER
+========================== */
+
+const aboutSlides =
+    document.querySelector(".about-slides");
+
+const aboutDots =
+    document.querySelectorAll(".about-dot");
+
+let aboutIndex = 0;
+
+
+function showAboutSlide(index) {
+
+    if (!aboutSlides) return;
+
+    aboutIndex = index;
+
+    aboutSlides.style.transform =
+        `translateX(-${aboutIndex * 100}%)`;
+
+
+    aboutDots.forEach((dot, i) => {
+
+        dot.classList.toggle(
+            "active",
+            i === aboutIndex
+        );
+
+    });
+
+}
+
+
+function nextAboutSlide() {
+
+    aboutIndex++;
+
+    if (
+        aboutIndex >=
+        aboutDots.length
+    ) {
+
+        aboutIndex = 0;
+
+    }
+
+    showAboutSlide(aboutIndex);
+
+}
+
+
+/* AUTO SLIDE */
+
+setInterval(
+    nextAboutSlide,
+    3500
+);
+
+
+/* DOT CLICK */
+
+aboutDots.forEach((dot, index) => {
+
+    dot.addEventListener(
+        "click",
+        () => {
+
+            showAboutSlide(index);
+
+        }
+    );
+
+});
 
 /* =========================
    ADD TO CART
