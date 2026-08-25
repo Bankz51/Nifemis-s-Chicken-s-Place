@@ -850,7 +850,6 @@ body {
     width: max-content;
     animation: reviewSlide 20s linear infinite;
     will-change: transform;
-    transform: translate3d(0, 0, 0);
 }
 
 .review-card {
@@ -913,16 +912,19 @@ body {
 
 @keyframes reviewSlide {
 
-    0% {
-        transform: translate3d(0, 0, 0);
+    from {
+
+        transform: translateX(0);
+
     }
 
-    100% {
-        transform: translate3d(-50%, 0, 0);
+    to {
+
+        transform: translateX(calc(-50% - 9px));
+
     }
 
 }
-
 /* =========================
    MOBILE
 ========================== */
