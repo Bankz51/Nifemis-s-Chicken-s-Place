@@ -1578,7 +1578,111 @@ body {
 /* =========================
    INITIALIZE
 ========================== */
+/* =========================
+   LOAD SUPABASE REVIEWS
+========================== */
 
+async function loadReviews() {
+
+    const reviewTrack =
+        document.getElementById("reviewTrack");
+
+    if (!reviewTrack) return;
+
+
+    reviewTrack.innerHTML =
+        "<p>Loading reviews...</p>";
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("reviews")
+            .select(
+                "name, rating, review, created_at"
+            )
+            .eq("approved", true)
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Error loading reviews:",
+            error
+        );
+
+        reviewTrack.innerHTML =
+            "<p>Unable to load reviews.</p>";
+
+        return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+        reviewTrack.innerHTML =
+            "<p>No reviews yet. Be the first to leave a review!</p>";
+
+        return;
+
+    }
+
+
+    reviewTrack.innerHTML =
+        data.map(item => {
+
+            const rating =
+                Number(item.rating) || 0;
+
+            return `
+
+                <div class="review-card">
+
+                    <div class="stars">
+
+                        ${"★".repeat(rating)}
+                        ${"☆".repeat(5 - rating)}
+
+                    </div>
+
+                    <p>
+                        “${escapeReviewHTML(
+                            item.review
+                        )}”
+                    </p>
+
+                    <h4>
+                        ${escapeReviewHTML(
+                            item.name
+                        )}
+                    </h4>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    startNifemiReviewCarousel();
+
+}
+    function escapeReviewHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
 renderCart();
 
 renderReviews();
