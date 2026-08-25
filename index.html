@@ -4377,6 +4377,294 @@ const supabaseClient =
 
 
 /* =========================
+   LOAD REVIEWS
+========================== */
+
+async function loadReviews() {
+
+    const reviewTrack =
+        document.getElementById("reviewTrack");
+
+    if (!reviewTrack) return;
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("reviews")
+            .select(
+                "name, rating, review, created_at"
+            )
+            .eq("approved", true)
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Error loading reviews:",
+            error
+        );
+
+        reviewTrack.innerHTML =
+            "<p>Unable to load reviews.</p>";
+
+        return;
+
+    }
+
+
+    if (!data || data.length === 0) {
+
+        reviewTrack.innerHTML =
+            "<p>No reviews yet. Be the first to leave a review!</p>";
+
+        return;
+
+    }
+
+
+    reviewTrack.innerHTML =
+        data.map(item => {
+
+            const rating =
+                Number(item.rating) || 0;
+
+            return `
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ${"★".repeat(rating)}
+                        ${"☆".repeat(5 - rating)}
+                    </div>
+
+                    <p>
+                        “${escapeReviewHTML(
+                            item.review
+                        )}”
+                    </p>
+
+                    <h4>
+                        ${escapeReviewHTML(
+                            item.name
+                        )}
+                    </h4>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    startNifemiReviewCarousel();
+
+}
+
+
+/* =========================
+   ESCAPE REVIEW TEXT
+========================== */
+
+function escapeReviewHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   REVIEW CAROUSEL
+========================== */
+
+let nifemiReviewIndex = 0;
+let nifemiReviewTimer;
+
+
+function startNifemiReviewCarousel() {
+
+    const track =
+        document.getElementById("reviewTrack");
+
+    if (!track) return;
+
+
+    const cards =
+        track.querySelectorAll(
+            ".review-card"
+        );
+
+
+    if (cards.length <= 1) return;
+
+
+    clearInterval(
+        nifemiReviewTimer
+    );
+
+
+    nifemiReviewIndex = 0;
+
+
+    track.style.transform =
+        "translate3d(0, 0, 0)";
+
+
+    nifemiReviewTimer =
+        setInterval(
+            function() {
+
+                nifemiReviewIndex++;
+
+
+                if (
+                    nifemiReviewIndex >=
+                    cards.length
+                ) {
+
+                    nifemiReviewIndex = 0;
+
+                }
+
+
+                track.style.transform =
+                    "translate3d(-" +
+                    (
+                        nifemiReviewIndex *
+                        100
+                    ) +
+                    "%, 0, 0)";
+
+            },
+            5000
+        );
+
+}
+
+
+/* =========================
+   SUBMIT REVIEW
+========================== */
+
+const reviewForm =
+    document.getElementById(
+        "reviewForm"
+    );
+
+
+if (reviewForm) {
+
+    reviewForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById(
+                        "reviewName"
+                    )
+                    .value
+                    .trim();
+
+
+            const rating =
+                Number(
+                    document
+                        .getElementById(
+                            "reviewRating"
+                        )
+                        .value
+                );
+
+
+            const review =
+                document
+                    .getElementById(
+                        "reviewText"
+                    )
+                    .value
+                    .trim();
+
+
+            const message =
+                document.getElementById(
+                    "reviewMessage"
+                );
+
+
+            if (
+                !name ||
+                !rating ||
+                !review
+            ) {
+
+                message.textContent =
+                    "Please fill in all fields.";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Submitting review...";
+
+
+            const { error } =
+                await supabaseClient
+                    .from("reviews")
+                    .insert([
+                        {
+                            name: name,
+                            rating: rating,
+                            review: review,
+                            approved: false
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(
+                    "Review submission error:",
+                    error
+                );
+
+                message.textContent =
+                    "Unable to submit review.";
+
+                return;
+
+            }
+
+
+            reviewForm.reset();
+
+
+            message.textContent =
+                "Thank you! Your review has been submitted for approval.";
+
+        }
+    );
+
+}
+
+
+/* =========================
    INITIALIZE
 ========================== */
 
