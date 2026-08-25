@@ -947,6 +947,38 @@ body {
 
 }
         /* =========================
+   RATING SELECTOR
+========================== */
+
+.rating-box {
+    margin-bottom: 18px;
+}
+
+.rating-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.rating-box select {
+    width: 100%;
+    padding: 15px 16px;
+    border: 1px solid #ddd;
+    border-radius: 11px;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.rating-box select:focus {
+    border-color: var(--yellow-dark);
+    box-shadow: 0 0 0 3px rgba(214, 166, 42, 0.12);
+}
+        /* =========================
            CONTACT
         ========================== */
 
@@ -3002,35 +3034,43 @@ renderReviews();
 
                 <div class="form-group">
 
-                    <select
-                        id="reviewRating"
-                        required>
+                   <div class="rating-box">
 
-                        <option value="">
-                            Choose your rating
-                        </option>
+    <label for="reviewRating">
+        Your Rating
+    </label>
 
-                        <option value="5">
-                            ★★★★★ — Excellent
-                        </option>
+    <select
+        id="reviewRating"
+        required>
 
-                        <option value="4">
-                            ★★★★☆ — Very Good
-                        </option>
+        <option value="">
+            ⭐ Choose your rating
+        </option>
 
-                        <option value="3">
-                            ★★★☆☆ — Good
-                        </option>
+        <option value="5">
+            ⭐⭐⭐⭐⭐ — Excellent
+        </option>
 
-                        <option value="2">
-                            ★★☆☆☆ — Fair
-                        </option>
+        <option value="4">
+            ⭐⭐⭐⭐☆ — Very Good
+        </option>
 
-                        <option value="1">
-                            ★☆☆☆☆ — Poor
-                        </option>
+        <option value="3">
+            ⭐⭐⭐☆☆ — Good
+        </option>
 
-                    </select>
+        <option value="2">
+            ⭐⭐☆☆☆ — Fair
+        </option>
+
+        <option value="1">
+            ⭐☆☆☆☆ — Poor
+        </option>
+
+    </select>
+
+</div>
 
                 </div>
 
