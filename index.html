@@ -1907,44 +1907,76 @@ renderReviews();
         content: none;
     }
 
-}
-        /* =================================================
-   FINAL REVIEW CAROUSEL — MOBILE OVERRIDE
+}/* =================================================
+   REVIEW CAROUSEL — CLEAN VERSION
 ================================================= */
 
 .review-track-wrapper {
     width: 100%;
-    overflow: hidden !important;
+    overflow: hidden;
     position: relative;
 }
 
 .review-track {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    width: max-content !important;
-    gap: 18px !important;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 18px;
+    width: max-content;
 
-    animation-name: nifemiReviewMove !important;
-    animation-duration: 18s !important;
-    animation-timing-function: linear !important;
-    animation-iteration-count: infinite !important;
-    animation-play-state: running !important;
+    animation: reviewSlide 20s linear infinite;
 
-    transform: translate3d(0, 0, 0) !important;
     will-change: transform;
 }
 
-.review-track.paused {
-    animation-play-state: running !important;
-}
-
 .review-card {
-    flex: 0 0 320px !important;
-    width: 320px !important;
+    flex: 0 0 320px;
+    width: 320px;
     box-sizing: border-box;
 }
 
 
+/* =========================
+   PAUSE WHEN TOUCHED/HOVERED
+========================== */
+
+.review-track.paused {
+    animation-play-state: paused;
+}
+
+
+/* =========================
+   CAROUSEL MOVEMENT
+========================== */
+
+@keyframes reviewSlide {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================== */
+
+@media (max-width: 600px) {
+
+    .review-card {
+        flex: 0 0 280px;
+        width: 280px;
+    }
+
+    .review-track {
+        animation-duration: 18s;
+    }
+
+}
 /* =========================
    PHONE
 ========================== */
@@ -1969,18 +2001,6 @@ renderReviews();
    FORCE CONTINUOUS MOVEMENT
 ========================== */
 
-@keyframes nifemiReviewMove {
-
-    0% {
-        transform: translate3d(0, 0, 0) !important;
-    }
-
-    100% {
-        transform: translate3d(-50%, 0, 0) !important;
-    }
-
-}
-    
 
     </style>
 </head>
