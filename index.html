@@ -1596,7 +1596,7 @@ async function loadReviews() {
 
     const { data, error } =
         await supabaseClient
-            .from("reviews")
+            .from("reviews NCP")
             .select(
                 "name, rating, review, created_at"
             )
@@ -4390,7 +4390,7 @@ async function loadReviews() {
 
     const { data, error } =
         await supabaseClient
-            .from("reviews")
+            .from("reviews NCP")
             .select(
                 "name, rating, review, created_at"
             )
@@ -4557,15 +4557,8 @@ function startNifemiReviewCarousel() {
    SUBMIT REVIEW
 ========================== */
 
-const reviewForm =
-    document.getElementById(
-        "reviewForm"
-    );
-
-
-if (reviewForm) {
-
-    reviewForm.addEventListener(
+document.getElementById("reviewForm")
+    ?.addEventListener(
         "submit",
         async function(event) {
 
@@ -4626,7 +4619,7 @@ if (reviewForm) {
 
             const { error } =
                 await supabaseClient
-                    .from("reviews")
+                    .from("reviews NCP")
                     .insert([
                         {
                             name: name,
