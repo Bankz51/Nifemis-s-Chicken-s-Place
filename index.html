@@ -14,6 +14,10 @@
 
 <!-- APPLE HOME SCREEN ICON -->
 <link rel="apple-touch-icon" href="logo.png">
+    <!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
 
@@ -107,7 +111,94 @@ body {
             justify-content: space-between;
             gap: 20px;
         }
-        
+
+        /* =========================
+   FOOTER CONNECT
+========================== */
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+
+.social-link i {
+    width: 22px;
+
+    font-size: 20px;
+
+    text-align: center;
+}
+
+
+/* WHATSAPP */
+
+.social-link.whatsapp i {
+    color: #25D366;
+}
+
+
+/* EMAIL */
+
+.social-link.email i {
+    color: #FFD400;
+}
+
+
+/* INSTAGRAM */
+
+.social-link.instagram i {
+    color: #E4405F;
+}
+
+
+/* TIKTOK */
+
+.social-link.tiktok i {
+    color: #00F2EA;
+}
+
+
+.social-link:hover {
+    transform: translateX(4px);
+}
+
+
+.social-link.whatsapp:hover {
+    color: #25D366;
+}
+
+
+.social-link.email:hover {
+    color: #FFD400;
+}
+
+
+.social-link.instagram:hover {
+    color: #E4405F;
+}
+
+
+.social-link.tiktok:hover {
+    color: #00F2EA;
+}
         
    /* =========================
    BRAND / LOGO
@@ -2878,46 +2969,72 @@ renderReviews();
             </div>
 
 
-            <div>
+           <!-- =========================
+     CONNECT
+========================== -->
 
-                <h3>
-                    Connect
-                </h3>
+<div class="footer-column connect-column">
 
-                <div class="footer-links">
+    <h3>Connect</h3>
 
-                    <a
-                        href="https://wa.me/2347073527944"
-                        target="_blank">
+    <div class="social-links">
 
-                        WhatsApp
+        <!-- WhatsApp -->
+        <a
+            href="https://wa.me/2347073527944"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link whatsapp">
 
-                    </a>
+            <i class="fa-brands fa-whatsapp"></i>
 
-                    <a
-                        href="mailto:Oluwanifemi226@gmail.com">
+            <span>07073527944</span>
 
-                        Email
+        </a>
 
-                    </a>
 
-                    <a
-                        href="https://www.instagram.com/nifemis_chickens_place/"
-                        target="_blank">
+        <!-- Email -->
+        <a
+            href="mailto:Oluwanifemi226@gmail.com"
+            class="social-link email">
 
-                        Instagram
+            <i class="fa-solid fa-envelope"></i>
 
-                    </a>
+            <span>Oluwanifemi226@gmail.com</span>
 
-                    <a
-                        href="https://www.tiktok.com/@nifemis_chickens_place"
-                        target="_blank">
+        </a>
 
-                        TikTok
 
-                    </a>
+        <!-- Instagram -->
+        <a
+            href="https://instagram.com/nifemis_chickens_place"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link instagram">
 
-                </div>
+            <i class="fa-brands fa-instagram"></i>
+
+            <span>@nifemis_chickens_place</span>
+
+        </a>
+
+
+        <!-- TikTok -->
+        <a
+            href="https://www.tiktok.com/@nifemis_chickens_place"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link tiktok">
+
+            <i class="fa-brands fa-tiktok"></i>
+
+            <span>@nifemis_chickens_place</span>
+
+        </a>
+
+    </div>
+
+</div>
 
             </div>
 
