@@ -849,8 +849,12 @@ body {
     gap: 18px;
     width: max-content;
     animation: reviewSlide 28s linear infinite;
+    will-change: transform;
 }
 
+.review-card {
+    flex: 0 0 320px;
+}
 .review-track.paused {
     animation-play-state: paused;
 }
@@ -922,7 +926,17 @@ body {
 /* =========================
    MOBILE
 ========================== */
+@media (max-width: 600px) {
 
+    .review-track {
+        animation-duration: 20s;
+    }
+
+    .review-card {
+        flex: 0 0 280px;
+    }
+
+}
 @media (max-width: 600px) {
 
     .review-form {
