@@ -1737,9 +1737,7 @@ body {
 ========================== */
 
 <script>
-/* =========================
-   INITIALIZE
-========================== */
+
 /* =========================
    LOAD SUPABASE REVIEWS
 ========================== */
@@ -1751,10 +1749,8 @@ async function loadReviews() {
 
     if (!reviewTrack) return;
 
-
     reviewTrack.innerHTML =
         "<p>Loading reviews...</p>";
-
 
     const { data, error } =
         await supabaseClient
@@ -1770,7 +1766,6 @@ async function loadReviews() {
                 }
             );
 
-
     if (error) {
 
         console.error(
@@ -1782,9 +1777,7 @@ async function loadReviews() {
             "<p>Unable to load reviews.</p>";
 
         return;
-
     }
-
 
     if (!data || data.length === 0) {
 
@@ -1792,53 +1785,63 @@ async function loadReviews() {
             "<p>No reviews yet. Be the first to leave a review!</p>";
 
         return;
-
     }
 
+    const reviewCards =
+        data.map(item => {
 
-  const reviewCards = data.map(item => {
+            const rating =
+                Number(item.rating) || 0;
 
-    const rating =
-        Number(item.rating) || 0;
+            return `
+                <div class="review-card">
 
-    return `
-        <div class="review-card">
+                    <div class="stars">
+                        ${"★".repeat(rating)}
+                        ${"☆".repeat(5 - rating)}
+                    </div>
 
-            <div class="stars">
-                ${"★".repeat(rating)}
-                ${"☆".repeat(5 - rating)}
-            </div>
+                    <p>
+                        “${escapeReviewHTML(item.review)}”
+                    </p>
 
-            <p>
-                “${escapeReviewHTML(item.review)}”
-            </p>
+                    <h4>
+                        ${escapeReviewHTML(item.name)}
+                    </h4>
 
-            <h4>
-                ${escapeReviewHTML(item.name)}
-            </h4>
+                </div>
+            `;
 
-        </div>
-    `;
+        }).join("");
 
-}).join("");
-
-reviewTrack.innerHTML =
-    reviewCards + reviewCards;
-
+    reviewTrack.innerHTML =
+        reviewCards + reviewCards;
 }
-    function escapeReviewHTML(text) {
+
+
+/* =========================
+   ESCAPE REVIEW TEXT
+========================== */
+
+function escapeReviewHTML(text) {
 
     const div =
         document.createElement("div");
 
-    div.textContent = text;
+    div.textContent =
+        text;
 
     return div.innerHTML;
-
 }
+
+
+/* =========================
+   INITIALIZE
+========================== */
+
 renderCart();
 
-renderReviews();
+loadReviews();
 
 </script>
     /* CART */
