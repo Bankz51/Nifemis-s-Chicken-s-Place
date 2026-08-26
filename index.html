@@ -1736,155 +1736,90 @@ body {
    JAVASCRIPT STARTS BELOW
 ========================== */
 
-<script>
-
 /* =========================
-   LOAD SUPABASE REVIEWS
+   CART MOBILE
 ========================== */
 
-async function loadReviews() {
+@media (max-width: 600px) {
 
-    const reviewTrack =
-        document.getElementById("reviewTrack");
-
-    if (!reviewTrack) return;
-
-    reviewTrack.innerHTML =
-        "<p>Loading reviews...</p>";
-
-    const { data, error } =
-        await supabaseClient
-            .from("reviews NCP")
-            .select(
-                "name, rating, review, created_at"
-            )
-            .eq("approved", true)
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            );
-
-    if (error) {
-
-        console.error(
-            "Error loading reviews:",
-            error
-        );
-
-        reviewTrack.innerHTML =
-            "<p>Unable to load reviews.</p>";
-
-        return;
+    .cart-panel {
+        width: 100%;
     }
 
-    if (!data || data.length === 0) {
-
-        reviewTrack.innerHTML =
-            "<p>No reviews yet. Be the first to leave a review!</p>";
-
-        return;
+    .cart-items {
+        padding: 15px;
     }
 
-    const reviewCards =
-        data.map(item => {
+    .cart-item {
+        gap: 10px;
+    }
 
-            const rating =
-                Number(item.rating) || 0;
+    .cart-item-image {
+        width: 58px;
+        height: 58px;
+    }
 
-            return `
-                <div class="review-card">
+    .cart-footer {
+        padding: 15px;
+    }
 
-                    <div class="stars">
-                        ${"★".repeat(rating)}
-                        ${"☆".repeat(5 - rating)}
-                    </div>
-
-                    <p>
-                        “${escapeReviewHTML(item.review)}”
-                    </p>
-
-                    <h4>
-                        ${escapeReviewHTML(item.name)}
-                    </h4>
-
-                </div>
-            `;
-
-        }).join("");
-
-    reviewTrack.innerHTML =
-        reviewCards + reviewCards;
 }
 
 
 /* =========================
-   ESCAPE REVIEW TEXT
+   MOBILE BRAND
 ========================== */
 
-function escapeReviewHTML(text) {
+@media (max-width: 900px) {
 
-    const div =
-        document.createElement("div");
+    .brand img {
+        width: 80px;
+        height: 80px;
+    }
 
-    div.textContent =
-        text;
+    .brand-text strong {
+        font-size: 13px;
+    }
 
-    return div.innerHTML;
+    .brand-text span {
+        font-size: 10px;
+    }
+
+    .mobile-controls {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
 }
 
 
 /* =========================
-   INITIALIZE
+   MOBILE NAV
 ========================== */
 
-renderCart();
-
-loadReviews();
-
-</script>
-    /* CART */
+@media (max-width: 900px) {
 
     nav .cart-btn {
         width: 100%;
-
         padding: 10px 12px;
-
         margin-top: 2px;
-
         background: var(--black);
-
         border: 1px solid #333;
-
         border-radius: 6px;
-
         color: white;
-
         font-size: 12px;
     }
 
-}
-
-    /* HAMBURGER */
-
     .menu-btn {
         display: block;
-
         border: none;
-
         background: transparent;
-
         color: white;
-
         font-size: 28px;
-
         cursor: pointer;
     }
-
-}
-
-    /* MOBILE FOOTER */
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
@@ -1896,7 +1831,13 @@ loadReviews();
     }
 
 }
-        @media (max-width: 600px) {
+
+
+/* =========================
+   MOBILE BODY
+========================== */
+
+@media (max-width: 600px) {
 
     body {
         overflow-x: hidden;
@@ -1910,9 +1851,12 @@ loadReviews();
         content: none;
     }
 
-}/* =================================================
-   REVIEW CAROUSEL — CLEAN VERSION
-================================================= */
+}
+
+
+/* =========================
+   REVIEW CAROUSEL
+========================== */
 
 .review-track-wrapper {
     width: 100%;
@@ -1925,9 +1869,7 @@ loadReviews();
     flex-wrap: nowrap;
     gap: 18px;
     width: max-content;
-
     animation: reviewSlide 20s linear infinite;
-
     will-change: transform;
 }
 
@@ -1936,20 +1878,6 @@ loadReviews();
     width: 320px;
     box-sizing: border-box;
 }
-
-
-/* =========================
-   PAUSE WHEN TOUCHED/HOVERED
-========================== */
-
-.review-track.paused {
-    animation-play-state: paused;
-}
-
-
-/* =========================
-   CAROUSEL MOVEMENT
-========================== */
 
 @keyframes reviewSlide {
 
@@ -1963,11 +1891,6 @@ loadReviews();
 
 }
 
-
-/* =========================
-   MOBILE
-========================== */
-
 @media (max-width: 600px) {
 
     .review-card {
@@ -1976,36 +1899,71 @@ loadReviews();
     }
 
     .review-track {
-        animation-duration: 18s;
-    }
-
-}
-/* =========================
-   PHONE
-========================== */
-
-@media (max-width: 600px) {
-
-    .review-track {
-        animation-duration: 16s !important;
-        animation-delay: 0s !important;
-        animation-play-state: running !important;
-    }
-
-    .review-card {
-        flex: 0 0 280px !important;
-        width: 280px !important;
+        animation-duration: 16s;
     }
 
 }
 
 
 /* =========================
-   FORCE CONTINUOUS MOVEMENT
+   RATING SELECTOR
 ========================== */
 
+.rating-box {
+    margin-bottom: 18px;
+}
 
-    </style>
+.rating-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.rating-box select {
+    width: 100%;
+    padding: 15px 16px;
+    border: 1px solid #ddd;
+    border-radius: 11px;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.rating-box select:focus {
+    border-color: var(--yellow-dark);
+    box-shadow: 0 0 0 3px rgba(214, 166, 42, 0.12);
+}
+
+
+/* =========================
+   TOAST
+========================== */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 25px;
+    transform: translate(-50%, 100px);
+    background: var(--black);
+    color: white;
+    border: 1px solid var(--yellow);
+    padding: 12px 17px;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: 700;
+    z-index: 3000;
+    transition: 0.3s;
+}
+
+.toast.show {
+    transform: translate(-50%, 0);
+}
+
+</style>
 </head>
 
 <body>
@@ -2017,8 +1975,6 @@ loadReviews();
 <header>
 
     <div class="container nav">
-
-        <!-- LOGO + BUSINESS NAME -->
 
         <a href="#home" class="brand">
 
@@ -2041,29 +1997,17 @@ loadReviews();
         </a>
 
 
-        <!-- NAVIGATION -->
-
         <nav id="mainNav">
 
-            <a href="#home">
-                Home
-            </a>
+            <a href="#home">Home</a>
 
-            <a href="#products">
-                Products
-            </a>
+            <a href="#products">Products</a>
 
-            <a href="#about">
-                About
-            </a>
+            <a href="#about">About</a>
 
-            <a href="#reviews">
-                Reviews
-            </a>
+            <a href="#reviews">Reviews</a>
 
-            <a href="#contact">
-                Contact
-            </a>
+            <a href="#contact">Contact</a>
 
             <button
                 class="cart-btn"
@@ -2073,18 +2017,12 @@ loadReviews();
 
                 <span
                     class="cart-count"
-                    id="cartCount">
-
-                    0
-
-                </span>
+                    id="cartCount">0</span>
 
             </button>
 
         </nav>
 
-
-        <!-- MOBILE CART + MENU -->
 
         <div class="mobile-controls">
 
@@ -2096,11 +2034,7 @@ loadReviews();
 
                 <span
                     class="cart-count"
-                    id="mobileCartCount">
-
-                    0
-
-                </span>
+                    id="mobileCartCount">0</span>
 
             </button>
 
@@ -2120,7 +2054,6 @@ loadReviews();
 </header>
 
 
-
 <!-- =========================
      HERO
 ========================== -->
@@ -2136,21 +2069,14 @@ loadReviews();
             </div>
 
             <h1>
-
                 Quality Frozen Foods,
-
-                <span>
-                    Delivered.
-                </span>
-
+                <span>Delivered.</span>
             </h1>
 
             <p>
-
                 Welcome to Nifemi’s Chicken’s Place —
                 your trusted destination for quality frozen
                 chicken, turkey, fish, seafood, eggs and more.
-
             </p>
 
             <div class="hero-buttons">
@@ -2179,6 +2105,7 @@ loadReviews();
 
 </section>
 
+
 <!-- =========================
      PRODUCTS
 ========================== -->
@@ -2205,69 +2132,51 @@ loadReviews();
         </div>
 
 
-        <!-- FILTERS -->
-
         <div class="filters">
 
             <button
                 class="filter-btn active"
                 onclick="filterProducts('all',this)">
-
                 All
-
             </button>
 
             <button
                 class="filter-btn"
                 onclick="filterProducts('chicken',this)">
-
                 Chicken & Poultry
-
             </button>
 
             <button
                 class="filter-btn"
                 onclick="filterProducts('eggs',this)">
-
                 Eggs
-
             </button>
 
             <button
                 class="filter-btn"
                 onclick="filterProducts('fish',this)">
-
                 Fish
-
             </button>
 
             <button
                 class="filter-btn"
                 onclick="filterProducts('seafood',this)">
-
                 Seafood
-
             </button>
 
             <button
                 class="filter-btn"
                 onclick="filterProducts('sausage',this)">
-
                 Sausage
-
             </button>
 
         </div>
 
 
-        <!-- PRODUCTS -->
-
         <div
             class="products-grid"
             id="productsGrid">
 
-
-            <!-- FRESH CHICKEN -->
 
             <article
                 class="product-card"
@@ -2293,23 +2202,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦6,000
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Fresh Chicken',
-                        6000,
-                        'kg',
-                        'fresh-chicken.jpg'
-                        )">
+                        onclick="addToCart('Fresh Chicken',6000,'kg','fresh-chicken.jpg')">
 
                         Add to Cart
 
@@ -2319,9 +2218,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- CHICKEN OROBO -->
 
             <article
                 class="product-card"
@@ -2347,23 +2243,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦6,500
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Chicken Orobo',
-                        6500,
-                        'kg',
-                        'chicken-orobo.jpg'
-                        )">
+                        onclick="addToCart('Chicken Orobo',6500,'kg','chicken-orobo.jpg')">
 
                         Add to Cart
 
@@ -2373,9 +2259,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- TURKEY LAPS -->
 
             <article
                 class="product-card"
@@ -2401,23 +2284,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦7,000
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Turkey Laps',
-                        7000,
-                        'kg',
-                        'turkey-laps.jpg'
-                        )">
+                        onclick="addToCart('Turkey Laps',7000,'kg','turkey-laps.jpg')">
 
                         Add to Cart
 
@@ -2427,9 +2300,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- TURKEY BLANKET -->
 
             <article
                 class="product-card"
@@ -2455,23 +2325,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦9,000
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Turkey Blanket',
-                        9000,
-                        'kg',
-                        'turkey-blanket.jpg'
-                        )">
+                        onclick="addToCart('Turkey Blanket',9000,'kg','turkey-blanket.jpg')">
 
                         Add to Cart
 
@@ -2481,9 +2341,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- CHICKEN HEAD & FEET -->
 
             <article
                 class="product-card"
@@ -2509,23 +2366,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦3,000
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Chicken Head & Feet',
-                        3000,
-                        'kg',
-                        'chicken-head-feet.jpg'
-                        )">
+                        onclick="addToCart('Chicken Head & Feet',3000,'kg','chicken-head-feet.jpg')">
 
                         Add to Cart
 
@@ -2535,9 +2382,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- GIZZARD -->
 
             <article
                 class="product-card"
@@ -2563,23 +2407,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦5,500
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Gizzard',
-                        5500,
-                        'kg',
-                        'gizzard.jpg'
-                        )">
+                        onclick="addToCart('Gizzard',5500,'kg','gizzard.jpg')">
 
                         Add to Cart
 
@@ -2589,9 +2423,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- CHICKEN WINGS -->
 
             <article
                 class="product-card"
@@ -2617,23 +2448,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦7,000
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Chicken Wings',
-                        7000,
-                        'kg',
-                        'chicken-wings.jpg'
-                        )">
+                        onclick="addToCart('Chicken Wings',7000,'kg','chicken-wings.jpg')">
 
                         Add to Cart
 
@@ -2643,9 +2464,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- CHICKEN NECK -->
 
             <article
                 class="product-card"
@@ -2671,23 +2489,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦4,000
-
-                        <small>
-                            / kg
-                        </small>
-
+                        <small>/ kg</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Chicken Neck',
-                        4000,
-                        'kg',
-                        'chicken-neck.jpg'
-                        )">
+                        onclick="addToCart('Chicken Neck',4000,'kg','chicken-neck.jpg')">
 
                         Add to Cart
 
@@ -2697,9 +2505,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- EGGS -->
 
             <article
                 class="product-card"
@@ -2725,23 +2530,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦5,500
-
-                        <small>
-                            / crate
-                        </small>
-
+                        <small>/ crate</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Eggs',
-                        5500,
-                        'crate',
-                        'eggs.jpg'
-                        )">
+                        onclick="addToCart('Eggs',5500,'crate','eggs.jpg')">
 
                         Add to Cart
 
@@ -2751,9 +2546,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- SAWA FISH -->
 
             <article
                 class="product-card"
@@ -2779,23 +2571,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦1,000 – ₦12,000
-
-                        <small>
-                            / piece depending on size
-                        </small>
-
+                        <small>/ piece depending on size</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Sawa Fish',
-                        1000,
-                        'piece (starting price)',
-                        'sawa-fish.jpg'
-                        )">
+                        onclick="addToCart('Sawa Fish',1000,'piece (starting price)','sawa-fish.jpg')">
 
                         Add to Cart
 
@@ -2805,9 +2587,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- SAUSAGE -->
 
             <article
                 class="product-card"
@@ -2833,13 +2612,8 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦300
-
-                        <small>
-                            / piece
-                        </small>
-
+                        <small>/ piece</small>
                     </div>
 
                     <p style="font-size:10px;color:#777;margin-bottom:12px;">
@@ -2848,12 +2622,7 @@ loadReviews();
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Sausage',
-                        300,
-                        'piece',
-                        'sausage.jpg'
-                        )">
+                        onclick="addToCart('Sausage',300,'piece','sausage.jpg')">
 
                         Add to Cart
 
@@ -2863,9 +2632,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- SHRIMPS -->
 
             <article
                 class="product-card"
@@ -2891,23 +2657,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦4,800
-
-                        <small>
-                            / 250g
-                        </small>
-
+                        <small>/ 250g</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Shrimps',
-                        4800,
-                        '250g',
-                        'shrimps.jpg'
-                        )">
+                        onclick="addToCart('Shrimps',4800,'250g','shrimps.jpg')">
 
                         Add to Cart
 
@@ -2917,9 +2673,6 @@ loadReviews();
 
             </article>
 
-
-
-            <!-- PRAWN -->
 
             <article
                 class="product-card"
@@ -2945,23 +2698,13 @@ loadReviews();
                     </h3>
 
                     <div class="product-price">
-
                         ₦7,000
-
-                        <small>
-                            / 250g
-                        </small>
-
+                        <small>/ 250g</small>
                     </div>
 
                     <button
                         class="add-cart"
-                        onclick="addToCart(
-                        'Prawn',
-                        7000,
-                        '250g',
-                        'prawn.jpg'
-                        )">
+                        onclick="addToCart('Prawn',7000,'250g','prawn.jpg')">
 
                         Add to Cart
 
@@ -2978,7 +2721,6 @@ loadReviews();
 </section>
 
 
-
 <!-- =========================
      ABOUT
 ========================== -->
@@ -2989,38 +2731,38 @@ loadReviews();
 
     <div class="container about-grid">
 
-      <div class="about-slider">
+        <div class="about-slider">
 
-    <div class="about-slides">
+            <div class="about-slides">
 
-        <img src="about-chicken.jpg"
-             alt="Fresh Chicken">
+                <img src="about-chicken.jpg"
+                     alt="Fresh Chicken">
 
-        <img src="about-turkey.jpg"
-             alt="Turkey">
+                <img src="about-turkey.jpg"
+                     alt="Turkey">
 
-        <img src="about-fish.jpg"
-             alt="Frozen Fish">
+                <img src="about-fish.jpg"
+                     alt="Frozen Fish">
 
-        <img src="about-gizzard.jpg"
-             alt="Chicken Gizzard">
+                <img src="about-gizzard.jpg"
+                     alt="Chicken Gizzard">
 
-        <img src="about-eggs.jpg"
-             alt="Fresh Eggs">
+                <img src="about-eggs.jpg"
+                     alt="Fresh Eggs">
 
-    </div>
+            </div>
 
-    <div class="about-dots">
+            <div class="about-dots">
 
-        <span class="about-dot active"></span>
-        <span class="about-dot"></span>
-        <span class="about-dot"></span>
-        <span class="about-dot"></span>
-        <span class="about-dot"></span>
+                <span class="about-dot active"></span>
+                <span class="about-dot"></span>
+                <span class="about-dot"></span>
+                <span class="about-dot"></span>
+                <span class="about-dot"></span>
 
-    </div>
+            </div>
 
-</div>
+        </div>
 
 
         <div>
@@ -3083,13 +2825,8 @@ loadReviews();
 </section>
 
 
-
 <!-- =========================
      REVIEWS
-========================== -->
-
-<!-- =========================
-     CUSTOMER REVIEWS
 ========================== -->
 
 <section
@@ -3116,10 +2853,6 @@ loadReviews();
         </div>
 
 
-        <!-- =========================
-             REVIEW FORM
-        ========================== -->
-
         <div class="review-form">
 
             <h3>
@@ -3142,43 +2875,43 @@ loadReviews();
 
                 <div class="form-group">
 
-                   <div class="rating-box">
+                    <div class="rating-box">
 
-    <label for="reviewRating">
-        Your Rating
-    </label>
+                        <label for="reviewRating">
+                            Your Rating
+                        </label>
 
-    <select
-        id="reviewRating"
-        required>
+                        <select
+                            id="reviewRating"
+                            required>
 
-        <option value="">
-            ⭐ Choose your rating
-        </option>
+                            <option value="">
+                                ⭐ Choose your rating
+                            </option>
 
-        <option value="5">
-            ⭐⭐⭐⭐⭐ — Excellent
-        </option>
+                            <option value="5">
+                                ⭐⭐⭐⭐⭐ — Excellent
+                            </option>
 
-        <option value="4">
-            ⭐⭐⭐⭐☆ — Very Good
-        </option>
+                            <option value="4">
+                                ⭐⭐⭐⭐☆ — Very Good
+                            </option>
 
-        <option value="3">
-            ⭐⭐⭐☆☆ — Good
-        </option>
+                            <option value="3">
+                                ⭐⭐⭐☆☆ — Good
+                            </option>
 
-        <option value="2">
-            ⭐⭐☆☆☆ — Fair
-        </option>
+                            <option value="2">
+                                ⭐⭐☆☆☆ — Fair
+                            </option>
 
-        <option value="1">
-            ⭐☆☆☆☆ — Poor
-        </option>
+                            <option value="1">
+                                ⭐☆☆☆☆ — Poor
+                            </option>
 
-    </select>
+                        </select>
 
-</div>
+                    </div>
 
                 </div>
 
@@ -3209,10 +2942,6 @@ loadReviews();
 
         </div>
 
-
-        <!-- =========================
-             REVIEW CAROUSEL
-        ========================== -->
 
         <div
             class="review-track-wrapper"
@@ -3258,9 +2987,6 @@ loadReviews();
 
 
         <div class="contact-grid">
-
-
-            <!-- CONTACT -->
 
             <div class="contact-card">
 
@@ -3349,11 +3075,7 @@ loadReviews();
                 </div>
 
 
-                <!-- SOCIAL MEDIA -->
-
                 <div class="socials">
-
-                    <!-- Instagram -->
 
                     <a
                         class="social-btn instagram"
@@ -3370,8 +3092,6 @@ loadReviews();
                     </a>
 
 
-                    <!-- TikTok -->
-
                     <a
                         class="social-btn tiktok"
                         href="https://www.tiktok.com/@nifemis_chickens_place"
@@ -3387,8 +3107,6 @@ loadReviews();
                     </a>
 
 
-                    <!-- WhatsApp -->
-
                     <a
                         class="social-btn whatsapp"
                         href="https://wa.me/2347073527944"
@@ -3403,8 +3121,6 @@ loadReviews();
 
                     </a>
 
-
-                    <!-- Email -->
 
                     <a
                         class="social-btn email"
@@ -3422,9 +3138,6 @@ loadReviews();
 
             </div>
 
-
-
-            <!-- OPENING HOURS -->
 
             <div class="contact-card">
 
@@ -3468,7 +3181,6 @@ loadReviews();
     </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -3524,72 +3236,72 @@ loadReviews();
             </div>
 
 
-           <!-- =========================
-     CONNECT
-========================== -->
+            <div class="footer-column connect-column">
 
-<div class="footer-column connect-column">
+                <h3>
+                    Connect
+                </h3>
 
-    <h3>Connect</h3>
+                <div class="social-links">
 
-    <div class="social-links">
+                    <a
+                        href="https://wa.me/2347073527944"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link whatsapp">
 
-        <!-- WhatsApp -->
-        <a
-            href="https://wa.me/2347073527944"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
 
-            <i class="fa-brands fa-whatsapp"></i>
+                        <span>
+                            07073527944
+                        </span>
 
-            <span>07073527944</span>
-
-        </a>
-
-
-        <!-- Email -->
-        <a
-            href="mailto:Oluwanifemi226@gmail.com"
-            class="social-link email">
-
-            <i class="fa-solid fa-envelope"></i>
-
-            <span>Oluwanifemi226@gmail.com</span>
-
-        </a>
+                    </a>
 
 
-        <!-- Instagram -->
-        <a
-            href="https://instagram.com/nifemis_chickens_place"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link instagram">
+                    <a
+                        href="mailto:Oluwanifemi226@gmail.com"
+                        class="social-link email">
 
-            <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-solid fa-envelope"></i>
 
-            <span>@nifemis_chickens_place</span>
+                        <span>
+                            Oluwanifemi226@gmail.com
+                        </span>
 
-        </a>
+                    </a>
 
 
-        <!-- TikTok -->
-        <a
-            href="https://www.tiktok.com/@nifemis_chickens_place"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link tiktok">
+                    <a
+                        href="https://instagram.com/nifemis_chickens_place"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link instagram">
 
-            <i class="fa-brands fa-tiktok"></i>
+                        <i class="fa-brands fa-instagram"></i>
 
-            <span>@nifemis_chickens_place</span>
+                        <span>
+                            @nifemis_chickens_place
+                        </span>
 
-        </a>
+                    </a>
 
-    </div>
 
-</div>
+                    <a
+                        href="https://www.tiktok.com/@nifemis_chickens_place"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="social-link tiktok">
+
+                        <i class="fa-brands fa-tiktok"></i>
+
+                        <span>
+                            @nifemis_chickens_place
+                        </span>
+
+                    </a>
+
+                </div>
 
             </div>
 
@@ -3598,27 +3310,34 @@ loadReviews();
 
         <div class="copyright">
 
-            © 2026 Nifemi’s Chicken’s Place.
+            ©️ 2026 Nifemi’s Chicken’s Place.
             All Rights Reserved.
 
         </div>
- <div class="designer-credit">
-    Designed & Developed by
-    <a
-        href="https://bankz51.github.io/portfolio/"
-        target="_blank"
-        rel="noopener noreferrer">
-        Bankz
-    </a>
-</div>
+
+
+        <div class="designer-credit">
+
+            Designed & Developed by
+
+            <a
+                href="https://bankz51.github.io/portfolio/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                Bankz
+
+            </a>
+
+        </div>
+
     </div>
 
 </footer>
 
 
-
 <!-- =========================
-     FLOATING WHATSAPP
+     WHATSAPP
 ========================== -->
 
 <a
@@ -3633,7 +3352,6 @@ loadReviews();
 </a>
 
 
-
 <!-- =========================
      CART
 ========================== -->
@@ -3644,7 +3362,6 @@ loadReviews();
     onclick="closeCartOutside(event)">
 
     <div class="cart-panel">
-
 
         <div class="cart-header">
 
@@ -3665,7 +3382,6 @@ loadReviews();
         <div
             class="cart-items"
             id="cartItems">
-
         </div>
 
 
@@ -3708,35 +3424,58 @@ loadReviews();
 </div>
 
 
-
 <div
     class="toast"
     id="toast">
-
 </div>
+
+
+<!-- =========================
+     SUPABASE
+========================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
 /* =========================
-   WHATSAPP NUMBER
+   SUPABASE
 ========================== */
 
-const whatsappNumber = "2347073527944";
+const SUPABASE_URL =
+    "https://ovefnpllavbyjmfckxhw.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_XoYquWqdNy9vzH2LhqAmSg_dTfsBR4l";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 /* =========================
    CART
 ========================== */
 
+const whatsappNumber =
+    "2347073527944";
+
 let cart =
     JSON.parse(
-        localStorage.getItem("nifemiCart")
+        localStorage.getItem(
+            "nifemiCart"
+        )
     ) || [];
 
 
 function formatMoney(amount) {
 
-    return "₦" + amount.toLocaleString("en-NG");
+    return "₦" +
+        Number(amount).toLocaleString(
+            "en-NG"
+        );
 
 }
 
@@ -3752,87 +3491,13 @@ function saveCart() {
 
 }
 
-    /* =========================
-   ABOUT IMAGE SLIDER
-========================== */
 
-const aboutSlides =
-    document.querySelector(".about-slides");
-
-const aboutDots =
-    document.querySelectorAll(".about-dot");
-
-let aboutIndex = 0;
-
-
-function showAboutSlide(index) {
-
-    if (!aboutSlides) return;
-
-    aboutIndex = index;
-
-    aboutSlides.style.transform =
-        `translateX(-${aboutIndex * 100}%)`;
-
-
-    aboutDots.forEach((dot, i) => {
-
-        dot.classList.toggle(
-            "active",
-            i === aboutIndex
-        );
-
-    });
-
-}
-
-
-function nextAboutSlide() {
-
-    aboutIndex++;
-
-    if (
-        aboutIndex >=
-        aboutDots.length
-    ) {
-
-        aboutIndex = 0;
-
-    }
-
-    showAboutSlide(aboutIndex);
-
-}
-
-
-/* AUTO SLIDE */
-
-setInterval(
-    nextAboutSlide,
-    3500
-);
-
-
-/* DOT CLICK */
-
-aboutDots.forEach((dot, index) => {
-
-    dot.addEventListener(
-        "click",
-        () => {
-
-            showAboutSlide(index);
-
-        }
-    );
-
-});
-
-/* =========================
-   ADD TO CART
-========================== */
-
-function addToCart(name, price, unit, image) {
+function addToCart(
+    name,
+    price,
+    unit,
+    image
+) {
 
     const existing =
         cart.find(
@@ -3863,23 +3528,32 @@ function addToCart(name, price, unit, image) {
 
     saveCart();
 
-    showToast(name + " added to cart");
+    showToast(
+        name + " added to cart"
+    );
 
 }
 
 
-/* =========================
-   QUANTITY
-========================== */
+function changeQuantity(
+    index,
+    change
+) {
 
-function changeQuantity(index, change) {
+    if (!cart[index]) return;
 
-    cart[index].quantity += change;
+    cart[index].quantity +=
+        change;
 
 
-    if (cart[index].quantity <= 0) {
+    if (
+        cart[index].quantity <= 0
+    ) {
 
-        cart.splice(index, 1);
+        cart.splice(
+            index,
+            1
+        );
 
     }
 
@@ -3889,22 +3563,17 @@ function changeQuantity(index, change) {
 }
 
 
-/* =========================
-   REMOVE ITEM
-========================== */
-
 function removeItem(index) {
 
-    cart.splice(index, 1);
+    cart.splice(
+        index,
+        1
+    );
 
     saveCart();
 
 }
 
-
-/* =========================
-   CLEAR CART
-========================== */
 
 function clearCart() {
 
@@ -3912,21 +3581,32 @@ function clearCart() {
 
     saveCart();
 
-    showToast("Cart cleared");
+    showToast(
+        "Cart cleared"
+    );
 
 }
 
 
-/* =========================
-   RENDER CART
-========================== */
-
 function renderCart() {
 
     const cartItems =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
-    const cartCount =
+    const desktopCount =
+        document.getElementById(
+            "cartCount"
+        );
+
+    const mobileCount =
+        document.getElementById(
+            "mobileCartCount"
+        );
+
+
+    const count =
         cart.reduce(
             (total, item) =>
                 total + item.quantity,
@@ -3934,17 +3614,10 @@ function renderCart() {
         );
 
 
-    const desktopCount =
-        document.getElementById("cartCount");
-
-    const mobileCount =
-        document.getElementById("mobileCartCount");
-
-
     if (desktopCount) {
 
         desktopCount.textContent =
-            cartCount;
+            count;
 
     }
 
@@ -3952,7 +3625,7 @@ function renderCart() {
     if (mobileCount) {
 
         mobileCount.textContent =
-            cartCount;
+            count;
 
     }
 
@@ -3963,28 +3636,25 @@ function renderCart() {
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-
             <div class="empty-cart">
-
                 Your cart is empty.
-
                 <br><br>
-
                 Add some frozen foods
                 to get started.
-
             </div>
-
         `;
 
 
-        const totalElement =
-            document.getElementById("cartTotal");
+        const total =
+            document.getElementById(
+                "cartTotal"
+            );
 
 
-        if (totalElement) {
+        if (total) {
 
-            totalElement.textContent = "₦0";
+            total.textContent =
+                "₦0";
 
         }
 
@@ -3994,7 +3664,7 @@ function renderCart() {
     }
 
 
-    let total = 0;
+    let totalAmount = 0;
 
 
     cartItems.innerHTML =
@@ -4006,11 +3676,11 @@ function renderCart() {
                     item.quantity;
 
 
-                total += itemTotal;
+                totalAmount +=
+                    itemTotal;
 
 
                 return `
-
                     <div class="cart-item">
 
                         <div class="cart-item-image">
@@ -4020,7 +3690,6 @@ function renderCart() {
                                 alt="${item.name}">
 
                         </div>
-
 
                         <div class="cart-item-details">
 
@@ -4033,32 +3702,26 @@ function renderCart() {
                                 / ${item.unit}
                             </p>
 
-
                             <div class="quantity">
 
                                 <button
-                                    onclick="changeQuantity(${index}, -1)">
+                                    onclick="changeQuantity(${index},-1)">
                                     −
                                 </button>
-
 
                                 <span>
                                     ${item.quantity}
                                 </span>
 
-
                                 <button
-                                    onclick="changeQuantity(${index}, 1)">
+                                    onclick="changeQuantity(${index},1)">
                                     +
                                 </button>
-
 
                                 <button
                                     class="remove-item"
                                     onclick="removeItem(${index})">
-
                                     Remove
-
                                 </button>
 
                             </div>
@@ -4066,70 +3729,67 @@ function renderCart() {
                         </div>
 
                     </div>
-
                 `;
 
             }
         ).join("");
 
 
-    const totalElement =
-        document.getElementById("cartTotal");
+    const total =
+        document.getElementById(
+            "cartTotal"
+        );
 
 
-    if (totalElement) {
+    if (total) {
 
-        totalElement.textContent =
-            formatMoney(total);
+        total.textContent =
+            formatMoney(
+                totalAmount
+            );
 
     }
 
 }
 
 
-/* =========================
-   OPEN CART
-========================== */
-
 function openCart() {
 
-    const cartOverlay =
-        document.getElementById("cartOverlay");
+    const overlay =
+        document.getElementById(
+            "cartOverlay"
+        );
 
+    if (!overlay) return;
 
-    if (!cartOverlay) return;
-
-
-    cartOverlay.classList.add("open");
+    overlay.classList.add(
+        "open"
+    );
 
     renderCart();
 
 }
 
 
-/* =========================
-   CLOSE CART
-========================== */
-
 function closeCart() {
 
-    const cartOverlay =
-        document.getElementById("cartOverlay");
+    const overlay =
+        document.getElementById(
+            "cartOverlay"
+        );
 
+    if (!overlay) return;
 
-    if (!cartOverlay) return;
-
-
-    cartOverlay.classList.remove("open");
+    overlay.classList.remove(
+        "open"
+    );
 
 }
 
 
-/* =========================
-   CLOSE CART OUTSIDE
-========================== */
-
-function closeCartOutside(event) {
+function closeCartOutside(
+    event
+) {
 
     if (
         event.target.id ===
@@ -4143,15 +3803,13 @@ function closeCartOutside(event) {
 }
 
 
-/* =========================
-   WHATSAPP CHECKOUT
-========================== */
-
 function checkoutWhatsApp() {
 
     if (cart.length === 0) {
 
-        showToast("Your cart is empty");
+        showToast(
+            "Your cart is empty"
+        );
 
         return;
 
@@ -4162,63 +3820,50 @@ function checkoutWhatsApp() {
 
 
     const orderItems =
-        cart.map(item => {
+        cart.map(
+            item => {
 
-            const itemTotal =
-                item.price *
-                item.quantity;
-
-
-            total += itemTotal;
+                const itemTotal =
+                    item.price *
+                    item.quantity;
 
 
-            return (
+                total +=
+                    itemTotal;
 
-                item.name +
-                " — " +
-                item.quantity +
-                " " +
-                item.unit +
-                " — " +
-                formatMoney(itemTotal)
 
-            );
+                return (
+                    item.name +
+                    " — " +
+                    item.quantity +
+                    " " +
+                    item.unit +
+                    " — " +
+                    formatMoney(
+                        itemTotal
+                    )
+                );
 
-        }).join("\n");
+            }
+        ).join("\n");
 
 
     const message =
-
         "Hello Nifemi’s Chicken’s Place, I’d like to place an order." +
-        "\n\n" +
-
-        "My order:" +
-        "\n" +
-
+        "\n\nMy order:\n" +
         orderItems +
-
-        "\n\n" +
-
-        "Total: " +
+        "\n\nTotal: " +
         formatMoney(total) +
-
-        "\n\n" +
-
-        "Thank you.";
+        "\n\nThank you.";
 
 
-    const whatsappURL =
-
+    window.open(
         "https://wa.me/" +
         whatsappNumber +
         "?text=" +
-        encodeURIComponent(message);
-
-
-    /* OPEN WHATSAPP */
-
-    window.open(
-        whatsappURL,
+        encodeURIComponent(
+            message
+        ),
         "_blank"
     );
 
@@ -4226,45 +3871,63 @@ function checkoutWhatsApp() {
 
 
 /* =========================
-   PRODUCT FILTER
+   FILTER
 ========================== */
 
-function filterProducts(category, button) {
+function filterProducts(
+    category,
+    button
+) {
 
     document
-        .querySelectorAll(".filter-btn")
-        .forEach(btn => {
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            btn => {
 
-            btn.classList.remove("active");
+                btn.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     if (button) {
 
-        button.classList.add("active");
+        button.classList.add(
+            "active"
+        );
 
     }
 
 
     document
-        .querySelectorAll(".product-card")
-        .forEach(card => {
+        .querySelectorAll(
+            ".product-card"
+        )
+        .forEach(
+            card => {
 
-            if (
-                category === "all" ||
-                card.dataset.category === category
-            ) {
+                if (
+                    category === "all" ||
+                    card.dataset.category ===
+                    category
+                ) {
 
-                card.style.display = "block";
+                    card.style.display =
+                        "block";
 
-            } else {
+                } else {
 
-                card.style.display = "none";
+                    card.style.display =
+                        "none";
+
+                }
 
             }
-
-        });
+        );
 
 }
 
@@ -4276,58 +3939,65 @@ function filterProducts(category, button) {
 function toggleMenu() {
 
     const menu =
-        document.getElementById("mainNav");
+        document.getElementById(
+            "mainNav"
+        );
 
 
     if (!menu) return;
 
 
-    menu.classList.toggle("open");
+    menu.classList.toggle(
+        "open"
+    );
 
 }
 
 
-/* =========================
-   CLOSE MOBILE MENU
-   AFTER CLICKING LINK
-========================== */
-
 document
-    .querySelectorAll("#mainNav a")
-    .forEach(link => {
+    .querySelectorAll(
+        "#mainNav a"
+    )
+    .forEach(
+        link => {
 
-        link.addEventListener(
-            "click",
-            () => {
+            link.addEventListener(
+                "click",
+                () => {
 
-                const menu =
-                    document.getElementById(
-                        "mainNav"
-                    );
+                    const menu =
+                        document.getElementById(
+                            "mainNav"
+                        );
 
 
-                if (menu) {
+                    if (menu) {
 
-                    menu.classList.remove(
-                        "open"
-                    );
+                        menu.classList.remove(
+                            "open"
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 
 /* =========================
    TOAST
 ========================== */
 
-function showToast(message) {
+function showToast(
+    message
+) {
 
     const toast =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
 
     if (!toast) return;
@@ -4337,213 +4007,67 @@ function showToast(message) {
         message;
 
 
-    toast.classList.add("show");
-
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    }, 1800);
-
-}
-
-/* =========================
-   INITIALIZE
-========================== */
-
-renderCart();
-
-
-<!-- SUPABASE REVIEWS -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-const SUPABASE_URL =
-    "https://ovefnpllavbyjmfckxhw.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_XoYquWqdNy9vzH2LhqAmSg_dTfsBR4l";
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
+    toast.classList.add(
+        "show"
     );
 
 
-/* =========================
-   LOAD REVIEWS
-========================= */
+    setTimeout(
+        () => {
 
-async function loadReviews() {
-
-    const reviewTrack =
-        document.getElementById("reviewTrack");
-
-    if (!reviewTrack) return;
-
-    const { data, error } =
-        await supabaseClient
-            .from("reviews NCP")
-            .select(
-                "name, rating, review, created_at"
-            )
-            .eq("approved", true)
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
+            toast.classList.remove(
+                "show"
             );
 
-    if (error) {
+        },
+        1800
+    );
 
-        console.error(
-            "Review loading error:",
-            error
-        );
-
-        reviewTrack.innerHTML =
-            "<p>Unable to load reviews.</p>";
-
-        return;
-    }
-
-    if (!data || data.length === 0) {
-
-        reviewTrack.innerHTML =
-            "<p>No approved reviews yet.</p>";
-
-        return;
-    }
-
-    const reviewCards =
-        data.map(item => {
-
-            const rating =
-                Number(item.rating) || 0;
-
-            return `
-                <div class="review-card">
-
-                    <div class="stars">
-                        ${"★".repeat(rating)}
-                        ${"☆".repeat(5 - rating)}
-                    </div>
-
-                    <p>
-                        “${escapeReviewHTML(item.review)}”
-                    </p>
-
-                    <h4>
-                        ${escapeReviewHTML(item.name)}
-                    </h4>
-
-                </div>
-            `;
-
-        }).join("");
-
-    reviewTrack.innerHTML =
-        reviewCards + reviewCards;
 }
 
 
 /* =========================
-   ESCAPE REVIEW TEXT
-========================= */
+   ABOUT SLIDER
+========================== */
 
-function escapeReviewHTML(text) {
+const aboutSlides =
+    document.querySelector(
+        ".about-slides"
+    );
 
-    const div =
-        document.createElement("div");
+const aboutDots =
+    document.querySelectorAll(
+        ".about-dot"
+    );
 
-    div.textContent =
-        text;
-
-    return div.innerHTML;
-}
+let aboutIndex = 0;
 
 
-/* =========================
-   START
-========================= */
+function showAboutSlide(
+    index
+) {
 
-loadReviews();
+    if (!aboutSlides) return;
 
-</script>
 
-/* =========================
-   SUBMIT REVIEW
-========================= */
+    aboutIndex =
+        index;
 
-const nifemiReviewForm =
-    document.getElementById("reviewForm");
 
-if (nifemiReviewForm) {
+    aboutSlides.style.transform =
+        "translateX(-" +
+        (
+            aboutIndex * 100
+        ) +
+        "%)";
 
-    nifemiReviewForm.addEventListener(
-        "submit",
-        async function(event) {
 
-            event.preventDefault();
+    aboutDots.forEach(
+        (dot, i) => {
 
-            const name =
-                document.getElementById("reviewName")
-                    .value
-                    .trim();
-
-            const rating =
-                document.getElementById("reviewRating")
-                    .value;
-
-            const review =
-                document.getElementById("reviewText")
-                    .value
-                    .trim();
-
-            if (!name || !rating || !review) {
-
-                alert(
-                    "Please enter your name, choose a rating and write your review."
-                );
-
-                return;
-            }
-
-            const { error } =
-                await supabaseClient
-                    .from("reviews NCP")
-                    .insert([
-                        {
-                            name: name,
-                            rating: Number(rating),
-                            review: review,
-                            approved: false
-                        }
-                    ]);
-
-            if (error) {
-
-                console.error(
-                    "Review submission error:",
-                    error
-                );
-
-                alert(
-                    "Unable to submit your review. Please try again."
-                );
-
-                return;
-            }
-
-            nifemiReviewForm.reset();
-
-            alert(
-                "Thank you! Your review has been submitted for approval."
+            dot.classList.toggle(
+                "active",
+                i === aboutIndex
             );
 
         }
@@ -4552,11 +4076,340 @@ if (nifemiReviewForm) {
 }
 
 
-/* =========================
-   START
-========================= */
+function nextAboutSlide() {
 
-loadSupabaseReviews();
+    if (!aboutDots.length)
+        return;
+
+
+    aboutIndex++;
+
+
+    if (
+        aboutIndex >=
+        aboutDots.length
+    ) {
+
+        aboutIndex = 0;
+
+    }
+
+
+    showAboutSlide(
+        aboutIndex
+    );
+
+}
+
+
+if (aboutDots.length) {
+
+    setInterval(
+        nextAboutSlide,
+        3500
+    );
+
+}
+
+
+aboutDots.forEach(
+    (dot, index) => {
+
+        dot.addEventListener(
+            "click",
+            () => {
+
+                showAboutSlide(
+                    index
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   ESCAPE REVIEW HTML
+========================== */
+
+function escapeReviewHTML(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text || "";
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   LOAD REVIEWS
+========================== */
+
+async function loadReviews() {
+
+    const track =
+        document.getElementById(
+            "reviewTrack"
+        );
+
+
+    if (!track) return;
+
+
+    track.innerHTML =
+        "<p>Loading reviews...</p>";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("reviews NCP")
+            .select(
+                "name, rating, review, created_at"
+            )
+            .eq(
+                "approved",
+                true
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Review loading error:",
+            error
+        );
+
+
+        track.innerHTML =
+            "<p>Unable to load reviews.</p>";
+
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        track.innerHTML =
+            "<p>No approved reviews yet.</p>";
+
+
+        return;
+
+    }
+
+
+    const cards =
+        data.map(
+            item => {
+
+                const rating =
+                    Math.max(
+                        0,
+                        Math.min(
+                            5,
+                            Number(
+                                item.rating
+                            ) || 0
+                        )
+                    );
+
+
+                return `
+                    <div class="review-card">
+
+                        <div class="stars">
+                            ${"★".repeat(rating)}
+                            ${"☆".repeat(5 - rating)}
+                        </div>
+
+                        <p>
+                            “${escapeReviewHTML(
+                                item.review
+                            )}”
+                        </p>
+
+                        <h4>
+                            ${escapeReviewHTML(
+                                item.name
+                            )}
+                        </h4>
+
+                    </div>
+                `;
+
+            }
+        ).join("");
+
+
+    track.innerHTML =
+        cards + cards;
+
+}
+
+
+/* =========================
+   SUBMIT REVIEW
+========================== */
+
+const reviewForm =
+    document.getElementById(
+        "reviewForm"
+    );
+
+
+if (reviewForm) {
+
+    reviewForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById(
+                        "reviewName"
+                    )
+                    .value
+                    .trim();
+
+
+            const rating =
+                document
+                    .getElementById(
+                        "reviewRating"
+                    )
+                    .value;
+
+
+            const review =
+                document
+                    .getElementById(
+                        "reviewText"
+                    )
+                    .value
+                    .trim();
+
+
+            const message =
+                document.getElementById(
+                    "reviewMessage"
+                );
+
+
+            if (
+                !name ||
+                !rating ||
+                !review
+            ) {
+
+                if (message) {
+
+                    message.textContent =
+                        "Please fill in all fields.";
+
+                }
+
+                return;
+
+            }
+
+
+            if (message) {
+
+                message.textContent =
+                    "Submitting review...";
+
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("reviews NCP")
+                    .insert([
+                        {
+                            name: name,
+                            rating:
+                                Number(
+                                    rating
+                                ),
+                            review: review,
+                            approved: false
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(
+                    "Review submission error:",
+                    error
+                );
+
+
+                if (message) {
+
+                    message.textContent =
+                        "Unable to submit your review. Please try again.";
+
+                }
+
+
+                return;
+
+            }
+
+
+            reviewForm.reset();
+
+
+            if (message) {
+
+                message.textContent =
+                    "Thank you! Your review has been submitted for approval.";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   INITIALIZE
+========================== */
+
+renderCart();
+
+loadReviews();
 
 </script>
 
