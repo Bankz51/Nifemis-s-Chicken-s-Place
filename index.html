@@ -720,7 +720,6 @@
 
         /* =========================================================
            REVIEW CAROUSEL
-           Single animation system — no conflicting transform rules
         ========================================================= */
 
         .review-track-wrapper {
@@ -1264,6 +1263,37 @@
             background: #ffffff;
         }
 
+        .customer-details {
+            margin-bottom: 15px;
+        }
+
+        .customer-details h3 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .customer-details input {
+            width: 100%;
+            padding: 11px 12px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 12px;
+            background: #fff;
+        }
+
+        .customer-details input:focus {
+            border-color: var(--yellow-dark);
+            box-shadow:
+                0 0 0 3px rgba(214, 166, 42, 0.12);
+        }
+
+        .customer-details input:last-child {
+            margin-bottom: 0;
+        }
+
         .cart-total {
             display: flex;
             align-items: center;
@@ -1491,11 +1521,12 @@
 
             .nav {
                 min-height: 68px;
-                gap: 8px;
+                gap: 6px;
             }
 
             .brand {
                 min-width: 0;
+                flex: 1;
             }
 
             .brand img {
@@ -1524,14 +1555,22 @@
             }
 
             .mobile-controls .cart-btn {
-                padding: 8px 9px;
-                min-width: 48px;
+                padding: 7px 9px;
+                min-width: 44px;
+                font-size: 11px;
+                border-radius: 6px;
+            }
+
+            .mobile-controls .cart-count {
+                min-width: 16px;
+                height: 16px;
+                font-size: 8px;
             }
 
             .menu-btn {
-                width: 42px;
-                height: 42px;
-                font-size: 30px;
+                width: 40px;
+                height: 40px;
+                font-size: 29px;
             }
 
             #mainNav.open {
@@ -1541,7 +1580,9 @@
             }
 
 
-            /* HERO */
+            /* =====================================================
+               HERO BUTTONS
+            ===================================================== */
 
             .hero {
                 min-height: 570px;
@@ -1566,42 +1607,94 @@
             }
 
             .hero-buttons {
-                flex-direction: column;
+                display: flex;
+                flex-direction: row;
                 align-items: stretch;
+                gap: 8px;
+                flex-wrap: nowrap;
+                width: 100%;
             }
 
             .hero-buttons .btn,
             .hero-buttons a {
-                width: 100%;
+                flex: 1;
+                width: auto;
+                min-width: 0;
+                padding: 11px 7px;
+                font-size: 10px;
                 text-align: center;
+                white-space: nowrap;
+                border-radius: 22px;
             }
 
 
-            /* PRODUCTS */
+            /* =====================================================
+               PRODUCTS — 2 CARDS PER ROW
+            ===================================================== */
 
             .products-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .product-card {
+                border-radius: 12px;
             }
 
             .product-image {
-                height: 250px;
+                height: 145px;
             }
 
-
-            /* FILTERS */
-
-            .filters {
-                gap: 7px;
+            .product-info {
+                padding: 12px;
             }
 
-            .filter-btn {
-                padding: 8px 12px;
+            .product-category {
+                font-size: 7px;
+                letter-spacing: 0.6px;
+                line-height: 1.3;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+                line-height: 1.25;
+                margin: 4px 0;
+            }
+
+            .product-price {
+                font-size: 13px;
+                line-height: 1.3;
+                margin: 7px 0 10px;
+            }
+
+            .product-price small {
+                font-size: 8px;
+            }
+
+            .add-cart {
+                padding: 9px 6px;
+                border-radius: 7px;
                 font-size: 10px;
             }
 
 
-            /* ABOUT */
+            /* =====================================================
+               FILTERS
+            ===================================================== */
+
+            .filters {
+                gap: 6px;
+            }
+
+            .filter-btn {
+                padding: 8px 10px;
+                font-size: 9px;
+            }
+
+
+            /* =====================================================
+               ABOUT
+            ===================================================== */
 
             .about-grid {
                 gap: 35px;
@@ -1624,7 +1717,9 @@
             }
 
 
-            /* REVIEWS */
+            /* =====================================================
+               REVIEWS
+            ===================================================== */
 
             .review-form {
                 margin-left: 0;
@@ -1660,7 +1755,9 @@
             }
 
 
-            /* CONTACT */
+            /* =====================================================
+               CONTACT
+            ===================================================== */
 
             .contact-grid {
                 gap: 16px;
@@ -1671,37 +1768,93 @@
             }
 
 
-            /* FOOTER */
+            /* =====================================================
+               FOOTER
+            ===================================================== */
 
             footer {
-                padding: 40px 0 22px;
+                padding: 35px 0 20px;
             }
 
+            /*
+               Business description remains full width.
+            */
+
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
-                text-align: center;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px 18px;
+                padding-bottom: 20px;
+                text-align: left;
             }
 
             .footer-grid > div:first-child {
-                grid-column: auto;
+                grid-column: 1 / -1;
+                text-align: center;
+            }
+
+            /*
+               QUICK LINKS + CONNECT SIDE BY SIDE
+            */
+
+            .footer-grid > div:nth-child(2),
+            .footer-grid > div:nth-child(3) {
+                min-width: 0;
+            }
+
+            footer h3 {
+                font-size: 14px;
+                margin-bottom: 9px;
+            }
+
+            footer p {
+                font-size: 10px;
+                line-height: 1.5;
+            }
+
+            footer a {
+                font-size: 10px;
             }
 
             .footer-links {
-                align-items: center;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .footer-links a {
+                font-size: 10px;
             }
 
             .social-links {
-                align-items: center;
+                align-items: flex-start;
+                gap: 8px;
             }
 
             .social-link {
-                justify-content: center;
+                justify-content: flex-start;
+                gap: 7px;
+                font-size: 9px;
+                min-width: 0;
             }
 
+            .social-link span {
+                overflow-wrap: anywhere;
+            }
+
+            .social-link i {
+                width: 18px;
+                font-size: 16px;
+                flex-shrink: 0;
+            }
+
+            /*
+               COPYRIGHT UNDER QUICK LINKS + CONNECT
+            */
+
             .footer-bottom {
-                gap: 7px;
-                padding-top: 18px;
+                grid-column: 1 / -1;
+                gap: 6px;
+                padding-top: 15px;
+                margin-top: 0;
             }
 
             .copyright,
@@ -1710,7 +1863,9 @@
             }
 
 
-            /* CART */
+            /* =====================================================
+               CART
+            ===================================================== */
 
             .cart-panel {
                 width: 100%;
@@ -1747,8 +1902,19 @@
                 padding: 15px;
             }
 
+            .customer-details h3 {
+                font-size: 14px;
+            }
 
-            /* WHATSAPP */
+            .customer-details input {
+                font-size: 12px;
+                padding: 10px 11px;
+            }
+
+
+            /* =====================================================
+               WHATSAPP
+            ===================================================== */
 
             .whatsapp-float {
                 right: 14px;
@@ -1759,7 +1925,9 @@
             }
 
 
-            /* TOAST */
+            /* =====================================================
+               TOAST
+            ===================================================== */
 
             .toast {
                 bottom: 18px;
@@ -1789,12 +1957,47 @@
             }
 
             .mobile-controls .cart-btn {
-                padding: 7px 8px;
+                padding: 6px 7px;
             }
 
             .menu-btn {
                 width: 38px;
                 font-size: 28px;
+            }
+
+            .hero-buttons {
+                gap: 6px;
+            }
+
+            .hero-buttons .btn,
+            .hero-buttons a {
+                padding: 10px 5px;
+                font-size: 9px;
+            }
+
+            .products-grid {
+                gap: 9px;
+            }
+
+            .product-image {
+                height: 125px;
+            }
+
+            .product-info {
+                padding: 10px;
+            }
+
+            .product-info h3 {
+                font-size: 12px;
+            }
+
+            .product-price {
+                font-size: 12px;
+            }
+
+            .add-cart {
+                font-size: 9px;
+                padding: 8px 4px;
             }
 
             .review-card {
@@ -3293,6 +3496,38 @@
 
         <div class="cart-footer">
 
+            <!-- CUSTOMER DETAILS -->
+
+            <div class="customer-details">
+
+                <h3>
+                    Customer Details
+                </h3>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Full Name *"
+                    autocomplete="name"
+                    required>
+
+                <input
+                    type="text"
+                    id="customerAddress"
+                    placeholder="Delivery Address *"
+                    autocomplete="street-address"
+                    required>
+
+                <input
+                    type="tel"
+                    id="customerPhone"
+                    placeholder="Phone Number *"
+                    autocomplete="tel"
+                    required>
+
+            </div>
+
+
             <div class="cart-total">
 
                 <span>
@@ -3723,6 +3958,11 @@ function closeCartOutside(
 }
 
 
+/* =========================================================
+   CHECKOUT ON WHATSAPP
+   CUSTOMER NAME + ADDRESS + PHONE REQUIRED
+========================================================= */
+
 function checkoutWhatsApp() {
 
     if (cart.length === 0) {
@@ -3735,6 +3975,95 @@ function checkoutWhatsApp() {
 
     }
 
+
+    /* =========================
+       CUSTOMER DETAILS
+    ========================== */
+
+    const customerNameInput =
+        document.getElementById(
+            "customerName"
+        );
+
+    const customerAddressInput =
+        document.getElementById(
+            "customerAddress"
+        );
+
+    const customerPhoneInput =
+        document.getElementById(
+            "customerPhone"
+        );
+
+
+    const customerName =
+        customerNameInput
+            ? customerNameInput.value.trim()
+            : "";
+
+    const customerAddress =
+        customerAddressInput
+            ? customerAddressInput.value.trim()
+            : "";
+
+    const customerPhone =
+        customerPhoneInput
+            ? customerPhoneInput.value.trim()
+            : "";
+
+
+    /* =========================
+       VALIDATE CUSTOMER DETAILS
+    ========================== */
+
+    if (!customerName) {
+
+        showToast(
+            "Please enter your name"
+        );
+
+        if (customerNameInput) {
+            customerNameInput.focus();
+        }
+
+        return;
+
+    }
+
+
+    if (!customerAddress) {
+
+        showToast(
+            "Please enter your address"
+        );
+
+        if (customerAddressInput) {
+            customerAddressInput.focus();
+        }
+
+        return;
+
+    }
+
+
+    if (!customerPhone) {
+
+        showToast(
+            "Please enter your phone number"
+        );
+
+        if (customerPhoneInput) {
+            customerPhoneInput.focus();
+        }
+
+        return;
+
+    }
+
+
+    /* =========================
+       BUILD ORDER
+    ========================== */
 
     let total = 0;
 
@@ -3773,14 +4102,38 @@ function checkoutWhatsApp() {
         ).join("\n");
 
 
+    /* =========================
+       WHATSAPP MESSAGE
+    ========================== */
+
     const message =
         "Hello Nifemi’s Chicken’s Place, I’d like to place an order." +
-        "\n\nMy order:\n" +
+
+        "\n\nCUSTOMER DETAILS" +
+
+        "\nName: " +
+        customerName +
+
+        "\nAddress: " +
+        customerAddress +
+
+        "\nPhone: " +
+        customerPhone +
+
+        "\n\nMY ORDER" +
+
+        "\n" +
         orderItems +
+
         "\n\nTotal: " +
         formatMoney(total) +
+
         "\n\nThank you.";
 
+
+    /* =========================
+       OPEN WHATSAPP
+    ========================== */
 
     window.open(
         "https://wa.me/" +
