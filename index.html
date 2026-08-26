@@ -11,13 +11,9 @@
     <meta name="description"
         content="Nifemi’s Chicken’s Place offers quality frozen chicken, turkey, fish, gizzard, eggs, seafood and other frozen foods in Abeokuta. Nationwide delivery available.">
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="logo.png">
-
-    <!-- APPLE HOME SCREEN ICON -->
     <link rel="apple-touch-icon" href="logo.png">
 
-    <!-- FONT AWESOME -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -62,6 +58,7 @@
             margin: 0;
             padding: 0;
             min-height: 100%;
+            width: 100%;
         }
 
         body {
@@ -598,6 +595,7 @@
         .reviews-section {
             background: var(--light-cream);
             overflow: hidden;
+            width: 100%;
         }
 
         .reviews-section h3,
@@ -719,15 +717,18 @@
 
 
         /* =========================================================
-           REVIEW CAROUSEL
+           REVIEW CAROUSEL — FIXED
         ========================================================= */
 
         .review-track-wrapper {
             width: 100%;
+            max-width: 100%;
             overflow: hidden;
             position: relative;
             cursor: grab;
             user-select: none;
+            -webkit-user-select: none;
+            contain: layout paint;
         }
 
         .review-track-wrapper:active {
@@ -740,7 +741,15 @@
             align-items: stretch;
             gap: 18px;
             width: max-content;
+            max-width: none;
             will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Animation is added by JavaScript only when
+           enough reviews exist. */
+
+        .review-track.review-animated {
             animation: reviewSlide 28s linear infinite;
         }
 
@@ -751,6 +760,7 @@
         .review-card {
             flex: 0 0 320px;
             width: 320px;
+            min-width: 320px;
             min-height: 190px;
             background: #ffffff;
             border: 1px solid var(--border);
@@ -763,6 +773,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+
+            overflow: hidden;
         }
 
         .review-card .stars {
@@ -771,36 +783,48 @@
             margin-bottom: 12px;
             letter-spacing: 2px;
             line-height: 1;
+            flex-shrink: 0;
         }
 
         .review-card p {
             width: 100%;
+            max-width: 100%;
             font-size: 14px;
             line-height: 1.65;
             color: #555;
             margin: 0 0 16px;
             text-align: center;
             overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
         .review-card h4 {
             width: 100%;
+            max-width: 100%;
             margin-top: auto;
             padding-top: 4px;
             font-size: 14px;
             font-weight: 800;
             color: #222;
             text-align: center;
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
         @keyframes reviewSlide {
+
             from {
-                transform: translateX(0);
+                transform: translate3d(0, 0, 0);
             }
 
             to {
-                transform: translateX(calc(-50% - 9px));
+                transform: translate3d(
+                    calc(-50% - 9px),
+                    0,
+                    0
+                );
             }
+
         }
 
 
@@ -890,6 +914,7 @@
             background: var(--black);
             color: white;
             padding: 48px 0 24px;
+            overflow: hidden;
         }
 
         .footer-grid {
@@ -947,12 +972,14 @@
             font-size: 12px;
             font-weight: 600;
             transition: 0.3s ease;
+            min-width: 0;
         }
 
         .social-link i {
             width: 22px;
             font-size: 20px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .social-link.whatsapp i {
@@ -1496,8 +1523,13 @@
             }
 
             .review-track {
+                gap: 14px;
+            }
+
+            .review-track.review-animated {
                 animation-duration: 24s;
             }
+
         }
 
 
@@ -1578,7 +1610,7 @@
                 right: 0;
                 width: min(190px, calc(100vw - 30px));
             }
-            
+
 
             /* =====================================================
                HERO BUTTONS
@@ -1629,7 +1661,7 @@
 
 
             /* =====================================================
-               PRODUCTS — 2 CARDS PER ROW
+               PRODUCTS
             ===================================================== */
 
             .products-grid {
@@ -1718,12 +1750,20 @@
 
 
             /* =====================================================
-               REVIEWS
+               REVIEWS — MOBILE FIX
             ===================================================== */
 
+            .reviews-section {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
             .review-form {
-                margin-left: 0;
-                margin-right: 0;
+                width: 100%;
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
                 padding: 24px 20px;
                 margin-bottom: 35px;
             }
@@ -1738,19 +1778,39 @@
                 font-size: 15px;
             }
 
+            .review-track-wrapper {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+
             .review-track {
                 gap: 14px;
+                width: max-content;
+                max-width: none;
+            }
+
+            .review-track.review-animated {
                 animation-duration: 20s;
             }
 
             .review-card {
                 flex: 0 0 280px;
                 width: 280px;
+                min-width: 280px;
+                max-width: 280px;
                 min-height: 185px;
                 padding: 22px 18px;
             }
 
             .review-card p {
+                font-size: 13px;
+                max-width: 100%;
+            }
+
+            .review-card h4 {
                 font-size: 13px;
             }
 
@@ -1774,17 +1834,15 @@
 
             footer {
                 padding: 35px 0 20px;
+                overflow: hidden;
             }
-
-            /*
-               Business description remains full width.
-            */
 
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 24px 18px;
                 padding-bottom: 20px;
                 text-align: left;
+                width: 100%;
             }
 
             .footer-grid > div:first-child {
@@ -1793,12 +1851,21 @@
             }
 
             /*
-               QUICK LINKS + CONNECT SIDE BY SIDE
+               QUICK LINKS
             */
 
-            .footer-grid > div:nth-child(2),
-            .footer-grid > div:nth-child(3) {
+            .footer-grid > div:nth-child(2) {
                 min-width: 0;
+            }
+
+            /*
+               CONNECT MOVED FURTHER TO THE RIGHT
+            */
+
+            .footer-grid > div:nth-child(3),
+            .footer-grid .connect-column {
+                min-width: 0;
+                padding-left: 16px;
             }
 
             footer h3 {
@@ -1827,6 +1894,7 @@
             .social-links {
                 align-items: flex-start;
                 gap: 8px;
+                width: 100%;
             }
 
             .social-link {
@@ -1834,10 +1902,13 @@
                 gap: 7px;
                 font-size: 9px;
                 min-width: 0;
+                width: 100%;
             }
 
             .social-link span {
                 overflow-wrap: anywhere;
+                word-break: break-word;
+                min-width: 0;
             }
 
             .social-link i {
@@ -1846,9 +1917,10 @@
                 flex-shrink: 0;
             }
 
-            /*
-               COPYRIGHT UNDER QUICK LINKS + CONNECT
-            */
+
+            /* =====================================================
+               FOOTER BOTTOM
+            ===================================================== */
 
             .footer-bottom {
                 grid-column: 1 / -1;
@@ -1934,6 +2006,7 @@
                 max-width: calc(100% - 30px);
                 text-align: center;
             }
+
         }
 
 
@@ -2003,11 +2076,19 @@
             .review-card {
                 flex-basis: 260px;
                 width: 260px;
+                min-width: 260px;
+                max-width: 260px;
+            }
+
+            .footer-grid > div:nth-child(3),
+            .footer-grid .connect-column {
+                padding-left: 10px;
             }
 
             .features {
                 grid-template-columns: 1fr;
             }
+
         }
 
     </style>
@@ -3496,8 +3577,6 @@
 
         <div class="cart-footer">
 
-            <!-- CUSTOMER DETAILS -->
-
             <div class="customer-details">
 
                 <h3>
@@ -3960,7 +4039,6 @@ function closeCartOutside(
 
 /* =========================================================
    CHECKOUT ON WHATSAPP
-   CUSTOMER NAME + ADDRESS + PHONE REQUIRED
 ========================================================= */
 
 function checkoutWhatsApp() {
@@ -3975,10 +4053,6 @@ function checkoutWhatsApp() {
 
     }
 
-
-    /* =========================
-       CUSTOMER DETAILS
-    ========================== */
 
     const customerNameInput =
         document.getElementById(
@@ -4011,10 +4085,6 @@ function checkoutWhatsApp() {
             ? customerPhoneInput.value.trim()
             : "";
 
-
-    /* =========================
-       VALIDATE CUSTOMER DETAILS
-    ========================== */
 
     if (!customerName) {
 
@@ -4061,10 +4131,6 @@ function checkoutWhatsApp() {
     }
 
 
-    /* =========================
-       BUILD ORDER
-    ========================== */
-
     let total = 0;
 
 
@@ -4102,10 +4168,6 @@ function checkoutWhatsApp() {
         ).join("\n");
 
 
-    /* =========================
-       WHATSAPP MESSAGE
-    ========================== */
-
     const message =
         "Hello Nifemi’s Chicken’s Place, I’d like to place an order." +
 
@@ -4130,10 +4192,6 @@ function checkoutWhatsApp() {
 
         "\n\nThank you.";
 
-
-    /* =========================
-       OPEN WHATSAPP
-    ========================== */
 
     window.open(
         "https://wa.me/" +
@@ -4438,6 +4496,68 @@ function escapeReviewHTML(
 }
 
 
+/* =========================================================
+   REVIEW CAROUSEL CONTROL
+========================================================= */
+
+function setupReviewCarousel() {
+
+    const track =
+        document.getElementById(
+            "reviewTrack"
+        );
+
+    if (!track) return;
+
+
+    const cards =
+        track.querySelectorAll(
+            ".review-card"
+        );
+
+
+    /*
+       Remove animation first so we can
+       safely recalculate the carousel.
+    */
+
+    track.classList.remove(
+        "review-animated"
+    );
+
+
+    /*
+       A single review should remain still.
+       Two or more reviews can use the
+       duplicated carousel.
+    */
+
+    if (cards.length < 4) {
+
+        return;
+
+    }
+
+
+    /*
+       The review cards are duplicated.
+       Therefore the track can safely move
+       exactly halfway through its width.
+    */
+
+    requestAnimationFrame(
+        () => {
+
+            track.classList.add(
+                "review-animated"
+            );
+
+        }
+    );
+
+}
+
+
 /* =========================
    LOAD REVIEWS
 ========================== */
@@ -4451,6 +4571,11 @@ async function loadReviews() {
 
 
     if (!track) return;
+
+
+    track.classList.remove(
+        "review-animated"
+    );
 
 
     track.innerHTML =
@@ -4553,12 +4678,31 @@ async function loadReviews() {
 
 
     /*
-       Duplicate the cards so the CSS animation
-       can create a continuous carousel.
+       IMPORTANT:
+       Duplicate the complete review set.
+       This creates the second half of the
+       continuous carousel.
     */
 
     track.innerHTML =
         cards + cards;
+
+
+    /*
+       Start carousel only after the DOM has
+       been updated and browser has measured
+       the card widths.
+    */
+
+    requestAnimationFrame(
+        () => {
+
+            requestAnimationFrame(
+                setupReviewCarousel
+            );
+
+        }
+    );
 
 }
 
